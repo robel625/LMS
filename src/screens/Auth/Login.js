@@ -5,7 +5,7 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {CheckBox, FormInput, IconButton, TextButton} from '../../components';
 import {COLORS, FONTS, SIZES, constants, icons} from '../../constants';
 
-const Login = ({setSelectedScreen}) => {
+const Login = ({setSelectedScreen, onLogin}) => {
   // State
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
@@ -100,6 +100,10 @@ const Login = ({setSelectedScreen}) => {
             marginTop: SIZES.padding,
             marginLeft: SIZES.base,
             borderRadius: SIZES.radius,
+            height: 55,
+          }}
+          onPress={() => {
+            onLogin();
           }}
         />
       </View>
@@ -168,10 +172,17 @@ const Login = ({setSelectedScreen}) => {
           appendComponent={
             <IconButton
               containerStyle={{
+                width: 40,
+                height: 40,
+                justifyContent: 'center',
                 alignItem: 'flex-end',
               }}
+              iconStyle={{
+                    width: 25,
+                    height: 25,
+                    tintColor: COLORS.contentPrimary
+                }}
               icon={isVisible ? icons.eye_off : icons.eye}
-              iconStyle={{tintColor: COLORS.contentPrimary}}
               onPress={() => setIsVisible(!isVisible)}
             />
           }

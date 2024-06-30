@@ -67,12 +67,17 @@ const SetupNewPassword = ({navigation}) => {
           appendComponent={
             <IconButton
               containerStyle={{
+                width: 40,
+                height: 40,
+                justifyContent: 'center',
                 alignItems: 'flex-end',
               }}
-              icon={isPasswordVisible ? icons.eye_off : icons.eye}
               iconStyle={{
-                tintColor: COLORS.contentPrimary,
-              }}
+                    width: 25,
+                    height: 25,
+                    tintColor: COLORS.contentPrimary
+                }}
+              icon={isPasswordVisible ? icons.eye_off : icons.eye}
               onPress={() => {
                 setIsPasswordVisible(!isPasswordVisible);
               }}
@@ -131,6 +136,7 @@ const SetupNewPassword = ({navigation}) => {
           contentContainerStyle={{
             marginTop: SIZES.padding,
             borderRadius: SIZES.radius,
+            height: 55,
           }}
           onPress={() => {
             navigation.navigate('Success', {

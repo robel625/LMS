@@ -97,10 +97,17 @@ const Register = ({setSelectedScreen, onRegister}) => {
           appendComponent={
             <IconButton
               containerStyle={{
+                width: 40,
+                height: 40,
+                justifyContent: 'center',
                 alignItems: 'flex-end',
               }}
+              iconStyle={{
+                    width: 25,
+                    height: 25,
+                    tintColor: COLORS.contentPrimary
+                }}
               icon={isVisible ? icons.eye_off : icons.eye}
-              iconStyle={{tintColor: COLORS.contentPrimary}}
               onPress={() => setIsVisible(!isVisible)}
             />
           }
@@ -199,6 +206,7 @@ const Register = ({setSelectedScreen, onRegister}) => {
             marginTop: SIZES.padding,
             marginLeft: SIZES.base,
             borderRadius: SIZES.radius,
+            height: 55,
           }}
           onPress={() => {
             onRegister();

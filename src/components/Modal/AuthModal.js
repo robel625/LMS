@@ -13,6 +13,7 @@ const AuthModal = ({
   selectedScreen,
   setSelectedScreen,
   onRegister,
+  onLogin,
   onForgotPasswordSubmit,
 }) => {
   // Bottom Sheet
@@ -44,6 +45,15 @@ const AuthModal = ({
         <View>
           <IconButton
             icon={icons.angle_arrow_left}
+            containerStyle={{
+          width: 40,
+          height: 40,
+          justifyContent: 'center',
+        }}
+        iconStyle={{
+              width: 25,
+              height: 25,
+          }}
             onPress={() => {
               hideModal();
             }}
@@ -96,7 +106,10 @@ const AuthModal = ({
               type: 'timing',
               duration: 500,
             }}>
-            <Login setSelectedScreen={setSelectedScreen} />
+            <Login 
+            setSelectedScreen={setSelectedScreen} 
+            onLogin={onLogin}
+            />
           </MotiView>
 
           {/* Register */}

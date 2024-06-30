@@ -6,18 +6,15 @@ const IconButton = ({containerStyle, icon, iconStyle, onPress}) => {
   return (
     <TouchableOpacity
       style={{
-        width: 40,
-        height: 40,
-        justifyContent: 'center',
-        ...containerStyle,
+          ...containerStyle,
       }}
       onPress={onPress}>
       <Image
         source={icon}
         resizeMode="contain"
         style={{
-          width: 25,
-          height: 25,
+          width: 30,
+          height: 30,
           tintColor: COLORS.white,
           ...iconStyle,
         }}

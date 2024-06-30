@@ -1,7 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
 import {IconButton} from '.';
-import {SIZES, icons} from '../constants';
+import {COLORS, SIZES, icons} from '../constants';
 import {useNavigation} from '@react-navigation/native';
 
 const Header = ({containerStyle}) => {
@@ -17,6 +17,16 @@ const Header = ({containerStyle}) => {
       <IconButton
         icon={icons.angle_arrow_left}
         onPress={() => navigation.goBack()}
+        containerStyle={{
+          width: 40,
+          height: 40,
+          justifyContent: 'center',
+        }}
+        iconStyle={{
+              width: 25,
+              height: 25,
+              tinitColor: COLORS.white
+          }}
       />
     </View>
   );

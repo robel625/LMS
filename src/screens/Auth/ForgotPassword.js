@@ -98,6 +98,7 @@ const ForgotPassword = ({setSelectedScreen, onForgotPasswordSubmit}) => {
             marginTop: SIZES.padding,
             marginLeft: SIZES.base,
             borderRadius: SIZES.radius,
+            height: 55,
           }}
           onPress={() => {
             onForgotPasswordSubmit();

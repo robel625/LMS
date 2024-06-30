@@ -60,6 +60,7 @@ const Success = ({route}) => {
           contentContainerStyle={{
             marginBottom: SIZES.padding,
             borderRadius: SIZES.radius,
+            height: 55,
           }}
           onPress={onPress}
         />

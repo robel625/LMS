@@ -139,6 +139,8 @@ const Onboarding = ({navigation}) => {
           contentContainerStyle={{
             marginHorizontal: SIZES.padding,
             marginBottom: SIZES.padding,
+            height: 55,
+            borderRadius: 30,
           }}
           onPress={handleNextPress}
         />

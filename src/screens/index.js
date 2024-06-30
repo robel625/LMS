@@ -10,6 +10,12 @@ import SetupNewPassword from './Auth/SetupNewPassword';
 // Misc
 import Success from './Misc/Success';
 
+//LMS
+import MainLayout from "./Dashboard/MainLayout"
+import Home from "./Dashboard/Home"
+import Profile from "./Dashboard/Profile"
+import Search from "./Dashboard/Search"
+
 export {
   ForgotPassword,
   Login,
@@ -19,4 +25,10 @@ export {
   SetupNewPassword,
   Welcome,
   Success,
+
+  //LMS
+  MainLayout,
+  Home,
+  Profile,
+  Search
 };

@@ -118,6 +118,8 @@ const Otp = ({navigation, route}) => {
           contentContainerStyle={{
             marginTop: SIZES.padding,
             borderRadius: SIZES.radius,
+            height: 55,
+            borderRadius: 30,
           }}
           onPress={() => {
             onOtpSubmit();

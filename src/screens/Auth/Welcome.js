@@ -47,6 +47,13 @@ const Welcome = ({navigation}) => {
     });
   }
 
+  function onLogin() {
+    hideModal();
+    navigation.navigate('Dashboard', {
+      from: constants.register,
+    });
+  }
+
   function onForgotPasswordSubmit() {
     hideModal();
     navigation.navigate('Otp', {
@@ -151,6 +158,8 @@ const Welcome = ({navigation}) => {
             label={'Create an Account'}
             contentContainerStyle={{
               marginTop: SIZES.padding,
+              height: 55,
+              borderRadius: 30,
             }}
             onPress={() => {
               showModal(constants.register);
@@ -178,6 +187,7 @@ const Welcome = ({navigation}) => {
           selectedScreen={selectedScreen}
           setSelectedScreen={setSelectedScreen}
           onRegister={onRegister}
+          onLogin={onLogin}
           onForgotPasswordSubmit={onForgotPasswordSubmit}
         />
       </MotiView>
