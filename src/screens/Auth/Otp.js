@@ -18,7 +18,7 @@ const Otp = ({navigation, route}) => {
         describtion: 'You have successfully created your account',
         btnLabel: 'Go to Home',
         onPress: () => {
-          navigation.navigate('Welcome');
+          navigation.navigate('Dashboard');
         },
       });
     } else if (from === constants.forgot_password) {
@@ -40,7 +40,7 @@ const Otp = ({navigation, route}) => {
         </Text>
 
         <Text style={{...FONTS.ps2, color: COLORS.contentSecondary}}>
-          To confirm the account, enter the 6-digit code we sent to your email
+          To confirm the account, enter the 4-digit code we sent to your email
           address
         </Text>
       </View>
@@ -55,10 +55,13 @@ const Otp = ({navigation, route}) => {
         }}>
         {/* OTP */}
         <OTPInputView
-          pinCount={6}
+          pinCount={4}
           style={{
             height: SIZES.width / 8,
             marginTop: SIZES.padding * 2,
+            alignSelf: 'center',
+            width: 250,
+
           }}
           codeInputFieldStyle={{
             width: SIZES.width / 8,

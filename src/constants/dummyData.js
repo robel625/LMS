@@ -2,33 +2,211 @@ const categories = [
     {
         id: 0,
         title: "Mobile Design",
-        thumbnail: require("../assets/images/bg_1.png")
+        background: require("../assets/images/bg_1.png")
     },
     {
         id: 1,
         title: "3D Modeling",
-        thumbnail: require("../assets/images/bg_2.png")
+        background: require("../assets/images/bg_2.png")
     },
     {
         id: 2,
         title: "Web Designing",
-        thumbnail: require("../assets/images/bg_3.png")
+        background: require("../assets/images/bg_3.png")
     },
     {
         id: 3,
         title: "Illustrations",
-        thumbnail: require("../assets/images/bg_4.png")
+        background: require("../assets/images/bg_4.png")
     },
     {
         id: 4,
         title: "Drawing",
-        thumbnail: require("../assets/images/bg_5.png")
+        background: require("../assets/images/bg_5.png")
     },
     {
         id: 5,
         title: "Animation",
-        thumbnail: require("../assets/images/bg_6.png")
+        background: require("../assets/images/bg_6.png")
     }
+]
+
+const SubjectCatagory = [
+    {
+        id: 0,
+        title: "BIOLOGY",
+        background: require("../assets/images/bg_1.png"),
+        thumbnail: require("../assets/images/microscope.png")
+    },
+    {
+        id: 1,
+        title: "CHEMSTRY",
+        background: require("../assets/images/bg_2.png"),
+        thumbnail: require("../assets/images/chemical-industrial.png")
+    },
+    {
+        id: 2,
+        title: "MATHS",
+        background: require("../assets/images/bg_3.png"),
+        thumbnail: require("../assets/images/maths.png")
+    },
+    {
+        id: 3,
+        title: "ENGLISH",
+        background: require("../assets/images/bg_4.png"),
+        thumbnail: require("../assets/images/english.png")
+    },
+    {
+        id: 4,
+        title: "PHYSICS",
+        background: require("../assets/images/bg_4.png"),
+        thumbnail: require("../assets/images/physics.png")
+    },
+    {
+        id: 5,
+        title: "GEOGRAPHY",
+        background: require("../assets/images/bg_5.png"),
+        thumbnail: require("../assets/images/globe-geography.png")
+    },
+    {
+        id: 6,
+        title: "HISTORY",
+        background: require("../assets/images/bg_6.png"),
+        thumbnail: require("../assets/images/history-storytelling.png")
+    },
+    {
+        id: 7,
+        title: "CIVICS",
+        background: require("../assets/images/bg_1.png"),
+        thumbnail: require("../assets/images/civic.png")
+    }
+]
+
+const YearCatagory = [
+    {
+        id: 0,
+        title: "2016",
+        open: true
+    },
+    {
+        id: 2,
+        title: "2015",
+        open: false
+    },
+    {
+        id: 3,
+        title: "2014",
+        open: false
+    },
+    {
+        id: 4,
+        title: "2013",
+        open: false
+    },
+    {
+        id: 5,
+        title: "2012",
+        open: false
+    },
+    {
+        id: 6,
+        title: "2011",
+        open: false
+    },
+    {
+        id: 7,
+        title: "2010",
+        open: false
+    },
+    {
+        id: 8,
+        title: "2009",
+        open: false
+    },
+    {
+        id: 9,
+        title: "2008",
+        open: false
+    },
+    {
+        id: 10,
+        title: "2007",
+        open: false
+    },
+]
+
+
+const UnitsCatagory = [
+    {
+        id: 0,
+        unit: "unit 1",
+        grade: 9,
+        title: "Biology and technology",
+        questions: 10
+    },
+    {
+        id: 2,
+        unit: "unit 2",
+        grade: 9,
+        title: "cell biology",
+        questions: 10
+    },
+    {
+        id: 3,
+        unit: "unit 3",
+        grade: 9,
+        title: "cell biology",
+        questions: 10
+    },
+    {
+        id: 4,
+        unit: "unit 4",
+        grade: 9,
+        title: "cell biology",
+        questions: 10
+    },
+    {
+        id: 5,
+        unit: "unit 5",
+        grade: 9,
+        title: "cell biology",
+        questions: 10
+    },
+    {
+        id: 6,
+        unit: "unit 6",
+        grade: 9,
+        title: "cell biology",
+        questions: 10
+    },
+    {
+        id: 7,
+        unit: "unit 1",
+        grade: 10,
+        title: "cell biology",
+        questions: 10
+    },
+    {
+        id: 8,
+        unit: "unit 2",
+        grade: 10,
+        title: "cell biology",
+        questions: 10
+    },
+    {
+        id: 9,
+        unit: "unit 3",
+        grade: 10,
+        title: "cell biology",
+        questions: 10
+    },
+    {
+        id: 10,
+        unit: "unit 4",
+        grade: 10,
+        title: "cell biology",
+        questions: 10
+    },
 ]
 
 const courses_list_1 = [
@@ -354,4 +532,8 @@ export default {
     top_searches,
     course_details,
     notificationByDays,
+
+    SubjectCatagory,
+    YearCatagory,
+    UnitsCatagory,
 }

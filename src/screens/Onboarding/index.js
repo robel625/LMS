@@ -1,9 +1,9 @@
 import React, {useRef, useState} from 'react';
-import {FlatList, Image, Text, View} from 'react-native';
+import {FlatList, Image, ImageBackground, Text, View} from 'react-native';
 import {Path, Svg} from 'react-native-svg';
 
 import {TextButton} from '../../components';
-import {constants, COLORS, SIZES, FONTS} from '../../constants';
+import {constants, COLORS, SIZES, FONTS, images} from '../../constants';
 
 const Onboarding = ({navigation}) => {
   //  SVG
@@ -60,16 +60,38 @@ const Onboarding = ({navigation}) => {
           keyExtractor={item => `onboarding_screen_phone-${item.id}`}
           renderItem={({item, index}) => {
             return (
-              <View style={{width: SIZES.width, alignItems: 'center'}}>
+              <View style={{width: SIZES.width, alignItems: 'center', backgroundColor: COLORS.white}}>
+
+        <ImageBackground
+            source={images?.mobile}
+            resize="cover"
+            style={{
+                marginTop: 50,
+                width: SIZES.width * 0.8,
+                height: SIZES.height * 0.8,
+                // height: 150,
+                // width: 200,
+                // paddingVertical: SIZES.padding,
+                // paddingHorizontal: SIZES.radius,
+                justifyContent: 'Center',
+                alignItems: "center",
+                // ...containerStyle
+
+            }}
+            // imageStyle={{
+            //     borderRadius: SIZES.radius
+            // }}
+            >
                 <Image
                   source={item.image}
                   resizeMode="contain"
                   style={{
-                    marginTop: SIZES.padding * 3,
-                    width: SIZES.width * 0.8,
+                    // marginTop: SIZES.padding * 3,
+                    width: SIZES.width * 0.6,
                     height: SIZES.height * 0.8,
                   }}
                 />
+                </ImageBackground>
               </View>
             );
           }}

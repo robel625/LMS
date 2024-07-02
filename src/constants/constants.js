@@ -1,21 +1,21 @@
 const onboarding_screens = [
     {
         id: 1,
-        image: require('../assets/images/splash_1.png'),
-        title: "Search your trip easily",
-        desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dapibus varius nulla, quis dictum augue."
+        image: require('../assets/images/cap-graduation-ceremony.png'),
+        title: "Start Learning With Z-Secret Training Institute",
+        desc: "Explore a variety of interactive lesson, video, quizze & assignment."
     },
     {
         id: 2,
-        image: require('../assets/images/splash_2.png'),
-        title: "Explore destinations and promotions",
-        desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dapibus varius nulla, quis dictum augue."
+        image: require('../assets/images/learning-video.png'),
+        title: "Learning videos",
+        desc: "Our engaging learning videos will spark your curiosty & enjoyable"
     },
     {
         id: 3,
-        image: require('../assets/images/splash_3.png'),
-        title: "Manage your trips",
-        desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dapibus varius nulla, quis dictum augue."
+        image: require('../assets/images/boy-exam.png'),
+        title: "Look at past exam papers",
+        desc: "One of the most effective ways to prepare for exams is to practice taking past versions. This helps you get used to the format of the questions"
     }
 ]
 
@@ -207,6 +207,17 @@ const course_details_tabs = [
     }
 ]
 
+const ALL_Units_Option = [
+    {
+        id: 0,
+        label: "All",
+    },
+    {
+        id: 1,
+        label: "Units",
+    }
+]
+
 export default {
     register_options,
     walkthrough,
@@ -217,6 +228,7 @@ export default {
     class_levels,
     created_within,
     course_details_tabs,
+    ALL_Units_Option,
 
 
     // from auth & onboarding

@@ -102,6 +102,9 @@ export const COLORS = {
     contentInverseSecondary: '#545454',
     contentInverseTertiary: '#6B6B6B',
 
+    success: '#00C851',
+    error: '#ff4444',
+
     
 }
 

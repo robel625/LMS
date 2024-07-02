@@ -37,7 +37,7 @@ const CourseListing = ({ navigation, route }) => {
 
     headerSharedValue.value = withDelay(500,
       withTiming(0, {
-        duration: 500
+        duration: 100
       })
     )
 
@@ -101,12 +101,11 @@ const CourseListing = ({ navigation, route }) => {
         overflow: "hidden"
        },headerHeightAnimatedStyle]}
     >
-        <SharedElement
-          id={`${sharedElementPrefix}-CategoryCard-Bg-${category?.id}`}
+        <View
           style={[StyleSheet.absoluteFillObject]}
         >
              <Image
-               source={category?.thumbnail}
+               source={category?.background}
                resizeMode= "cover"
                style={{
                  width: "100%",
@@ -114,7 +113,7 @@ const CourseListing = ({ navigation, route }) => {
                  borderBottomLeftRadius: 60
                }}
             />
-        </SharedElement>
+        </View>
 
         <Animated.View
          style={[{
@@ -141,9 +140,7 @@ const CourseListing = ({ navigation, route }) => {
         left: 30
        }, headerHideOnScrollAnimatedStyle ]}
     >
-           <SharedElement
-                 id={`${sharedElementPrefix}-CategoryCard-Title-${category?.id}`}
-                 style={[StyleSheet.absoluteFillObject]}
+           <View
              >
                 <Text
                    style={{
@@ -154,7 +151,7 @@ const CourseListing = ({ navigation, route }) => {
                 >
                     {category?.title}
                 </Text>
-                </SharedElement>
+                </View>
     </Animated.View>
 
     <Animated.View

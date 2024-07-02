@@ -21,6 +21,11 @@ const thumbnail_2 = require("../assets/images/thumbnail_2.png")
 const thumbnail_3 = require("../assets/images/thumbnail_3.png")
 const thumbnail_4 = require("../assets/images/thumbnail_4.png")
 
+const padlock = require("../assets/images/padlock.jpg")
+const telegram = require("../assets/images/telegram_icon.png")
+const mobile = require("../assets/images/mobile.png")
+const Z_Secret_Training = require("../assets/images/Z_Secret_Training.jpg")
+
 export default {
   success,
   train,
@@ -47,4 +52,9 @@ export default {
     thumbnail_2,
     thumbnail_3,
     thumbnail_4,
+
+    padlock,
+    telegram,
+    mobile,
+    Z_Secret_Training,
 };

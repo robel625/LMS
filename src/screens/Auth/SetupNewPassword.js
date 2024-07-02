@@ -144,7 +144,7 @@ const SetupNewPassword = ({navigation}) => {
               description: 'You can now login with your new password.',
               btnLabel: 'Login',
               onPress: () => {
-                navigation.navigate('Welcome');
+                navigation.navigate('Dashboard');
               },
             });
           }}

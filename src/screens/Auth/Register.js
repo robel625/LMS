@@ -29,7 +29,7 @@ const Register = ({setSelectedScreen, onRegister}) => {
             ...FONTS.ps2,
             color: COLORS.contentInverseSecondary,
           }}>
-          All field are required unless otherwise noted
+          All field are required unless
         </Text>
       </View>
     );

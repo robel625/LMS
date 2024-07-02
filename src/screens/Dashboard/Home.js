@@ -58,7 +58,7 @@ const Home = () => {
           style={{
             flex: 1,
           }}>
-          <Text style={{...FONTS.h2}}>Hello,ByProgrammers!</Text>
+          <Text style={{...FONTS.h2}}>Hello,ByRobel!</Text>
           <Text style={{...FONTS.body3, color: COLORS.gray50}}>
             {' '}
             Thursday, 9th sept 2021
@@ -89,7 +89,7 @@ const Home = () => {
             borderRadius: SIZES.radius
          }}
       >
-        <View>
+        {/* <View>
             <Text style={{ color: COLORS.white,
                            ...FONTS.body2
             }}>
@@ -101,6 +101,25 @@ const Home = () => {
             <Text style={{ marginTop: SIZES.radius, color: COLORS.white,
                            ...FONTS.body4
             }}>By Scott Harris</Text>
+        </View> */}
+
+        <View>
+            <Text style={{ color: COLORS.white,
+                           ...FONTS.h2
+            }}>university entrance exam </Text>
+            <Text style={{ color: COLORS.white,
+                           ...FONTS.body3
+            }}>
+                 questions & answer from 2007 - 2016
+            </Text>
+            <Text style={{ color: COLORS.white,
+                           ...FONTS.body3
+            }}>
+                 with explanation
+            </Text>
+            <Text style={{ marginTop: SIZES.radius, color: COLORS.white,
+                           ...FONTS.body4
+            }}>By The Secret</Text>
         </View>
 
         <Image
@@ -113,7 +132,7 @@ const Home = () => {
         />
 
         <TextButton
-            label="start Learning"
+            label="start Exams"
             contentContainerStyle={{
                 height: 40,
                 paddingHorizontal: SIZES.padding,
@@ -123,6 +142,7 @@ const Home = () => {
             labelStyle={{
                 color: COLORS.black
             }}
+            onPress={() => navigation.navigate('SubjectListing')}
         />
 
       </ImageBackground>

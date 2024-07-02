@@ -8,6 +8,7 @@ import {COLORS, FONTS, SIZES, constants, icons} from '../../constants';
 const Login = ({setSelectedScreen, onLogin}) => {
   // State
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isVisible, setIsVisible] = useState(false);
   const [rememberMeChecked, setRememberMeChecked] = useState(false);
@@ -129,7 +130,7 @@ const Login = ({setSelectedScreen, onLogin}) => {
 
         {/* Form Inputs */}
         {/* Phone Number */}
-        <FormInput
+        {/* <FormInput
           rootContainerStyle={{
             marginTop: SIZES.padding * 2,
           }}
@@ -140,6 +141,24 @@ const Login = ({setSelectedScreen, onLogin}) => {
           prependComponent={
             <Image
               source={icons.smartphone}
+              style={{
+                width: 25,
+                height: 25,
+                marginRight: SIZES.base,
+              }}
+            />
+          }
+        /> */}
+        {/* email */}
+        <FormInput
+          rootContainerStyle={{marginTop: SIZES.padding}}
+          label="Email Address"
+          placeholder={'Enter your email address'}
+          value={email}
+          onChange={value => setEmail(value)}
+          prependComponent={
+            <Image
+              source={icons.mail}
               style={{
                 width: 25,
                 height: 25,

@@ -22,6 +22,9 @@ import {
 } from './src/screens';
 import CourseListing from './src/screens/Course/CourseListing';
 import CourseDetails from './src/screens/Course/CourseDetails';
+import SubjectListing from './src/screens/Exams/SubjectListing';
+import YearListing from './src/screens/Exams/YearListing';
+import Exam from './src/screens/Exams/Exam';
 
 const Stack = createNativeStackNavigator();
 
@@ -42,8 +45,8 @@ const App = () => {
         <NavigationContainer>
           <Stack.Navigator
             screenOptions={{headerShown: false}}
-            // initialRouteName={'Onboarding'}
-            initialRouteName={'Dashboard'}
+            initialRouteName={'Onboarding'}
+            // initialRouteName={'Dashboard'}
             >
             {/* Auth */}
             <Stack.Screen name="Onboarding" component={Onboarding} />
@@ -68,6 +71,18 @@ const App = () => {
                 <Stack.Screen
                     name="CourseDetails"
                     component={CourseDetails}
+                />
+                <Stack.Screen
+                    name="SubjectListing"
+                    component={SubjectListing}
+                />
+                <Stack.Screen
+                    name="YearListing"
+                    component={YearListing}
+                />
+                <Stack.Screen
+                    name="Exam"
+                    component={Exam}
                 />
           </Stack.Navigator>
         </NavigationContainer>

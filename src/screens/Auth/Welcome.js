@@ -67,7 +67,8 @@ const Welcome = ({navigation}) => {
     return (
       <View>
         <Image
-          source={images.train}
+          source={images.Z_Secret_Training}
+          resizeMode= 'contain'
           style={{width: SIZES.width, height: 250}}
         />
       </View>
@@ -105,8 +106,8 @@ const Welcome = ({navigation}) => {
         <View>
           {/* Phone Number */}
           <IconTextButton
-            icon={icons.smartphone}
-            label={'Continue with Phone Number'}
+            icon={icons.mail}
+            label={'Continue with Email'}
             containerStyle={{
               borderColor: COLORS.primary500,
               backgroundColor: COLORS.primary500,
@@ -120,13 +121,13 @@ const Welcome = ({navigation}) => {
           />
 
           {/* Apple */}
-          <IconTextButton
+          {/* <IconTextButton
             icon={icons.apple_logo}
             label={'Continue with Apple'}
             containerStyle={{
               marginTop: SIZES.padding,
             }}
-          />
+          /> */}
 
           {/* Google */}
           <IconTextButton
