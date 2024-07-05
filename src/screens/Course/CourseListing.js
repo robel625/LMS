@@ -274,6 +274,7 @@ const CourseListing = ({ navigation, route }) => {
             onPress={() => navigation.navigate("CourseDetails", {
               selectedCourse: item 
             })}
+            paid={true}
         />
        ) }
        ItemSeparatorComponent={() => (

@@ -130,7 +130,7 @@ const Profile = ({ appTheme, toggleTheme}) => {
                         ...FONTS.h2
                        }}
                     >
-                       ByProgrammers
+                       By Z-Secret
                     </Text>
                     <Text
                        style={{
@@ -201,13 +201,13 @@ const Profile = ({ appTheme, toggleTheme}) => {
             <ProfileValue
                 icon={icons.profile}
                 label="Name"
-                value="ByProgrammers"
+                value="By Z-Secret"
             />
             <LineDivider/>
             <ProfileValue
                 icon={icons.email}
                 label="Email"
-                value="ByProgrammers@gmail.com"
+                value="By Z-Secret@gmail.com"
             />
             <LineDivider/>
             <ProfileValue

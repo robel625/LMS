@@ -1,34 +1,44 @@
 const categories = [
     {
         id: 0,
-        title: "Mobile Design",
+        title: "BIOLOGY",
         background: require("../assets/images/bg_1.png")
     },
     {
         id: 1,
-        title: "3D Modeling",
+        title: "CHEMSTRY",
         background: require("../assets/images/bg_2.png")
     },
     {
         id: 2,
-        title: "Web Designing",
+        title: "MATHS",
         background: require("../assets/images/bg_3.png")
     },
     {
         id: 3,
-        title: "Illustrations",
+        title: "ENGLISH",
         background: require("../assets/images/bg_4.png")
     },
     {
         id: 4,
-        title: "Drawing",
+        title: "PHYISCS",
         background: require("../assets/images/bg_5.png")
     },
     {
         id: 5,
-        title: "Animation",
+        title: "GEOGRAPHY",
         background: require("../assets/images/bg_6.png")
-    }
+    },
+    {
+        id: 6,
+        title: "HISTORY",
+        background: require("../assets/images/bg_1.png")
+    },
+    {
+        id: 6,
+        title: "CIVICS",
+        background: require("../assets/images/bg_2.png")
+    },
 ]
 
 const SubjectCatagory = [
@@ -212,13 +222,13 @@ const UnitsCatagory = [
 const courses_list_1 = [
     {
         id: 0,
-        title: "Canava Graphic Design Course - Beginner",
-        duration: "2h 30m",
+        title: "videos how to unlock the the subjects",
+        duration: "10m",
         thumbnail: require("../assets/images/thumbnail_1.png")
     },
     {
         id: 1,
-        title: "The Complete Presentation and speech",
+        title: "Electric current & circuit  UEE 2007-2015",
         duration: "1h 30m",
         thumbnail: require("../assets/images/thumbnail_2.png")
     }
@@ -320,7 +330,7 @@ const course_details = {
     number_of_students: "33.5k Students",
     duration: "2h 30m",
     instructor: {
-        name: "ByProgrammers",
+        name: "By Z-Secret",
         title: "Full Stack Programmer"
     },
     videos: [
@@ -381,21 +391,21 @@ const course_details = {
         {
             id: 0,
             name: "UI Fundamentals",
-            author: "Shared by ByProgrammers",
+            author: "Shared by By Z-Secret",
             upload_date: "13th Sep 2021",
             thumbnail: require("../assets/images/pdf.png")
         },
         {
             id: 1,
             name: "UX Checklist",
-            author: "Shared by ByProgrammers",
+            author: "Shared by By Z-Secret",
             upload_date: "11th Sep 2021",
             thumbnail: require("../assets/images/doc.png")
         },
         {
             id: 2,
             name: "Sketch File",
-            author: "Shared by ByProgrammers",
+            author: "Shared by By Z-Secret",
             upload_date: "7th Sep 2021",
             thumbnail: require("../assets/images/sketch.png")
         }
@@ -404,7 +414,7 @@ const course_details = {
         {
             id: 0,
             profile: require("../assets/images/profile.png"),
-            name: "ByProgrammers",
+            name: "By Z-Secret",
             no_of_comments: "11 comments",
             no_of_likes: "72 likes",
             posted_on: "5 days ago",
@@ -413,28 +423,28 @@ const course_details = {
                 {
                     id: 0,
                     profile: require("../assets/images/student_1.png"),
-                    name: "ByProgrammers",
+                    name: "By Z-Secret",
                     posted_on: "4 days ago",
                     comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
                 },
                 {
                     id: 1,
                     profile: require("../assets/images/student_1.png"),
-                    name: "ByProgrammers",
+                    name: "By Z-Secret",
                     posted_on: "4 days ago",
                     comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
                 },
                 {
                     id: 2,
                     profile: require("../assets/images/student_1.png"),
-                    name: "ByProgrammers",
+                    name: "By Z-Secret",
                     posted_on: "4 days ago",
                     comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
                 },
                 {
                     id: 3,
                     profile: require("../assets/images/student_1.png"),
-                    name: "ByProgrammers",
+                    name: "By Z-Secret",
                     posted_on: "4 days ago",
                     comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
                 },
@@ -443,7 +453,7 @@ const course_details = {
         {
             id: 1,
             profile: require("../assets/images/profile.png"),
-            name: "ByProgrammers",
+            name: "By Z-Secret",
             no_of_comments: "21 comments",
             no_of_likes: "372 likes",
             posted_on: "14 days ago",
@@ -452,21 +462,21 @@ const course_details = {
                 {
                     id: 0,
                     profile: require("../assets/images/student_1.png"),
-                    name: "ByProgrammers",
+                    name: "By Z-Secret",
                     posted_on: "7 days ago",
                     comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
                 },
                 {
                     id: 1,
                     profile: require("../assets/images/student_1.png"),
-                    name: "ByProgrammers",
+                    name: "By Z-Secret",
                     posted_on: "7 days ago",
                     comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
                 },
                 {
                     id: 2,
                     profile: require("../assets/images/student_1.png"),
-                    name: "ByProgrammers",
+                    name: "By Z-Secret",
                     posted_on: "7 days ago",
                     comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
                 },

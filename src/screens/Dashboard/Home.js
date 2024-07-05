@@ -59,7 +59,7 @@ const Home = () => {
             flex: 1,
           }}>
           <Text style={{...FONTS.h2}}>Hello,ByRobel!</Text>
-          <Text style={{...FONTS.body3, color: COLORS.gray50}}>
+          <Text style={{...FONTS.body3, color: COLORS.gray}}>
             {' '}
             Thursday, 9th sept 2021
           </Text>
@@ -119,7 +119,7 @@ const Home = () => {
             </Text>
             <Text style={{ marginTop: SIZES.radius, color: COLORS.white,
                            ...FONTS.body4
-            }}>By The Secret</Text>
+            }}>By Z Secret Training</Text>
         </View>
 
         <Image
@@ -151,7 +151,6 @@ const Home = () => {
 
   function renderCourses() {
     return (
-        <GestureHandlerRootView>
         <FlatList
            horizontal
            data={dummyData.courses_list_1}
@@ -171,13 +170,12 @@ const Home = () => {
                 />
            )}
            />
-           </GestureHandlerRootView>
     )}
 
   function  renderCategories() {
     return (
       <Section
-         title="Categries"
+         title="Paid Courses"
       >
          <GestureHandlerRootView>
         <FlatList
@@ -210,7 +208,7 @@ const Home = () => {
   function renderPopularCourses() {
     return (
       <Section
-         title="Popular Courses"
+         title="Free Courses"
          containerStyle={{
           marginTop: 30
          }}

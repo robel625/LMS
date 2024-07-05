@@ -124,7 +124,7 @@ const CourseChapters = () => {
       <View>
         {dummyData?.course_details?.videos.map((item, index) =>{
            return (
-            <View
+            <TouchableOpacity
                key={`Videos-${index}`}
                style={{
                 alignItems: 'center',
@@ -137,7 +137,7 @@ const CourseChapters = () => {
                   flexDirection: 'row',
                   paddingHorizontal: SIZES.padding,
                   alignItems: 'center',
-                  height: 70
+                  height: 70,
                 }}
               >
                 {/* IconButton */}
@@ -202,6 +202,7 @@ const CourseChapters = () => {
                 </View>
 
               </View>
+              
 
                {/* progress Bar */}
                { item?.is_playing &&
@@ -215,13 +216,20 @@ const CourseChapters = () => {
                       backgroundColor: COLORS.primary
                     }}
                 >
-
+                  
+                  
 
                 </View>
 
                }
+                <LineDivider
+                                lineStyle={{
+                                    height: 1,
+                                    marginVertical: SIZES.radius
+                                }}
+                            />
 
-            </View>
+            </TouchableOpacity>
            )
         })}
         
@@ -309,7 +317,7 @@ const CourseChapters = () => {
       {renderChapter()}
 
       {/* Popular Courses */}
-      {renderPopularCourses()}
+      {/* {renderPopularCourses()} */}
     </ScrollView>
   )
 }

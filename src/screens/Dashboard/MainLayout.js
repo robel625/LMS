@@ -100,17 +100,17 @@ const Tabs = ({scrollX, onBottomTabPress}) => {
                     >
                         <Image
                            source={item.icon}
-                           resizeMethod='contain'
+                           resizeMode= 'cover'
                            style={{
-                            width: 25,
-                            height: 25
+                            width: 15,
+                            height: 15
                            }}
                         />
                         <Text
                          style={{
-                            marginTop: 3,
+                            marginTop: 2,
                             color: COLORS.white,
-                            ...FONTS.h3
+                            ...FONTS.h4
                          }}
                         >
                             {item.label}
@@ -186,7 +186,7 @@ const MainLayout = ({appTheme}) => {
     return (
         <View 
             style={{
-                paddingBottom: SIZES.height > 800 ? 20 : 5,
+                // paddingBottom: SIZES.height > 800 ? 20 : 5,
                 paddingHorizontal: SIZES.padding,
                 paddingVertical: SIZES.radius,
                 backgroundColor: appTheme?.backgroundColor1
@@ -196,7 +196,7 @@ const MainLayout = ({appTheme}) => {
             <View 
             style={{
               width: SIZES.width -(SIZES.padding * 2),
-              height: 85,
+              height: 55,
               backgroundColor: '#fff', // Set a background color for proper shadow rendering
               borderRadius: SIZES.radius, // Add border radius (optional)
               elevation: 5, // Adjust to control shadow depth

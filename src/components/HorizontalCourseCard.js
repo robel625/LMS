@@ -3,7 +3,7 @@ import React from 'react'
 import { COLORS, SIZES, FONTS, icons } from "../constants"
 import IconLabel from './IconLabel'
 
-const HorizontalCourseCard = ({ containerStyle, course, onPress}) => {
+const HorizontalCourseCard = ({ containerStyle, course, onPress, paid = false}) => {
   return (
     <TouchableOpacity
         style={{
@@ -24,7 +24,7 @@ const HorizontalCourseCard = ({ containerStyle, course, onPress}) => {
             borderRadius: SIZES.radius
          }}
       >
-         <View style={{
+         {/* <View style={{
             // backgroundColor: COLORS.secondary,
             postion: 'absolute',
             top: 10,
@@ -46,7 +46,7 @@ const HorizontalCourseCard = ({ containerStyle, course, onPress}) => {
                 tintColor: course.is_favourite ? COLORS.secondary :  COLORS.additionalColor4
                }}
             />
-         </View>
+         </View> */}
       </ImageBackground>
             <View
               style={{
@@ -103,14 +103,14 @@ const HorizontalCourseCard = ({ containerStyle, course, onPress}) => {
                     marginTop: SIZES.base
                   }}
                >
-                <Text
+              {paid && <Text
                    style={{
                     ...FONTS.h2,
                     color: COLORS.primary
                    }}
                 >
                  {course.price.toFixed(2)}Birr
-                </Text>
+                </Text>}
 
                 <IconLabel
                    icon={icons.star}

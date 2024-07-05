@@ -180,7 +180,7 @@ const CourseFiles = () => {
         }}
     >
         {/* students */}
-        {renderStudens()}
+        {/* {renderStudens()} */}
 
         {/* Files */}
         {renderFiles()}
