@@ -1,9 +1,19 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { COLORS, FONTS, SIZES, icons } from "../constants"
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
-const ProfileValue = ({ appTheme, icon, label, value, onPress}) => {
+const ProfileValue = ({icon, label, value, onPress}) => {
+
+  const { auth, themeReducer } = useSelector((state) => state);
+    const dispatch = useDispatch();
+
+    const [appTheme, setAppTheme] = useState(false)
+
+    useEffect(()=> {
+        setAppTheme(themeReducer.appTheme)
+    }, [themeReducer])
+
   return (
     <TouchableOpacity
        style={{
@@ -74,17 +84,6 @@ const ProfileValue = ({ appTheme, icon, label, value, onPress}) => {
   )
 }
 
-export default connect(mapStateProps, mapDispatchToProps) (ProfileValue);
-
-function mapStateProps(state) {
-  return {
-      appTheme: state.appTheme,
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-      }
-}
+export default ProfileValue;
 
 const styles = StyleSheet.create({})

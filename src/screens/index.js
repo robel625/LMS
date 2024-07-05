@@ -6,6 +6,7 @@ import Register from './Auth/Register';
 import Otp from './Auth/Otp';
 import ForgotPassword from './Auth/ForgotPassword';
 import SetupNewPassword from './Auth/SetupNewPassword';
+import SignUp from './Auth/SignUp'; 
 
 // Misc
 import Success from './Misc/Success';
@@ -25,6 +26,7 @@ export {
   SetupNewPassword,
   Welcome,
   Success,
+  SignUp,
 
   //LMS
   MainLayout,

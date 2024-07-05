@@ -5,11 +5,16 @@ import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import SplashScreen from 'react-native-splash-screen';
 
+import DataProvider from './src/redux/store'
+import Alert from './src/components/alert/Alert';
+import { ToastProvider } from "react-native-toast-notifications";
+
 import { configureStore, current } from '@reduxjs/toolkit';
 // import { createStore, applyMiddleware }  from "redux";
 import { Provider } from "react-redux";
 import thunk from 'redux-thunk';
 import themeReducer from "./src/stores/themeReducer";
+
 
 import {
   MainLayout,
@@ -28,10 +33,10 @@ import Exam from './src/screens/Exams/Exam';
 
 const Stack = createNativeStackNavigator();
 
-const store = configureStore({
-  reducer: themeReducer, // Add your reducer(s)
-  //middleware: [thunk], // Add middleware (e.g., thunk)
-});
+// const store = configureStore({
+//   reducer: themeReducer, // Add your reducer(s)
+//   //middleware: [thunk], // Add middleware (e.g., thunk)
+// });
 
 const App = () => {
   useEffect(() => {
@@ -41,7 +46,9 @@ const App = () => {
   return (
     <GestureHandlerRootView style={{flex: 1}}>
       <BottomSheetModalProvider>
-      <Provider store={store}>
+      <DataProvider>
+      <ToastProvider>
+         <Alert />
         <NavigationContainer>
           <Stack.Navigator
             screenOptions={{headerShown: false}}
@@ -86,7 +93,8 @@ const App = () => {
                 />
           </Stack.Navigator>
         </NavigationContainer>
-        </Provider>
+        </ToastProvider>
+        </DataProvider>
       </BottomSheetModalProvider>
     </GestureHandlerRootView>
   );

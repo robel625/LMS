@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
-import {Image, Text, View} from 'react-native';
+import {Image, Keyboard, Text, View} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 import {CheckBox, FormInput, IconButton, TextButton} from '../../components';
 import {COLORS, FONTS, SIZES, constants, icons} from '../../constants';
 
-const Login = ({setSelectedScreen, onLogin}) => {
+const Login = ({setSelectedScreen, onLogin, alert}) => {
   // State
   const [phoneNumber, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
@@ -13,7 +13,19 @@ const Login = ({setSelectedScreen, onLogin}) => {
   const [isVisible, setIsVisible] = useState(false);
   const [rememberMeChecked, setRememberMeChecked] = useState(false);
 
+  console.log("alert inside login", alert)
+
+  const handleSubmit = () =>{
+    Keyboard.dismiss();
+    const userData = {
+      email,
+      password,
+    }
+    onLogin(userData);
+  }
+
   // Render
+   
 
   function renderTitleAndDescription() {
     return (
@@ -103,9 +115,7 @@ const Login = ({setSelectedScreen, onLogin}) => {
             borderRadius: SIZES.radius,
             height: 55,
           }}
-          onPress={() => {
-            onLogin();
-          }}
+          onPress={handleSubmit}
         />
       </View>
     );
@@ -167,6 +177,7 @@ const Login = ({setSelectedScreen, onLogin}) => {
             />
           }
         />
+        {alert.email && <Text style={{ color: "#fd2d6a"}} >{alert.email}</Text>}
 
         {/* Password */}
         <FormInput
@@ -206,13 +217,15 @@ const Login = ({setSelectedScreen, onLogin}) => {
             />
           }
         />
+        {alert.password && <Text style={{ color: "#fd2d6a"}} >{alert.password}</Text>}
 
         {/* Remember me and Forgot Password */}
         {renderRememberMenAndForgotPassword()}
-      </KeyboardAwareScrollView>
+      
 
       {/* Footer */}
       {renderFooter()}
+      </KeyboardAwareScrollView>
     </View>
   );
 };

@@ -1,9 +1,18 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image, Animated } from 'react-native'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { COLORS, FONTS, SIZES, icons } from "../constants"
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
-const ProfileRadioButton = ({appTheme, icon, label, isSelected, onPress}) => {
+const ProfileRadioButton = ({icon, label, isSelected, onPress}) => {
+
+   const { auth, themeReducer } = useSelector((state) => state);
+    const dispatch = useDispatch();
+
+    const [appTheme, setAppTheme] = useState(false)
+
+    useEffect(()=> {
+        setAppTheme(themeReducer.appTheme)
+    }, [themeReducer])
 
    const radioAnimate = React.useRef(new Animated.Value(0)).current;
    const circleColorAnimated = radioAnimate.interpolate({
@@ -115,17 +124,8 @@ const ProfileRadioButton = ({appTheme, icon, label, isSelected, onPress}) => {
   )
 }
 
-export default connect(mapStateProps, mapDispatchToProps) (ProfileRadioButton);
+export default ProfileRadioButton;
 
-function mapStateProps(state) {
-  return {
-      appTheme: state.appTheme,
-  }
-}
 
-function mapDispatchToProps(dispatch) {
-  return {
-      }
-}
 
 const styles = StyleSheet.create({})

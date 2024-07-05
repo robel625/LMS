@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {View, Text, ImageBackground, Image, ScrollView, TouchableOpacity, StyleSheet} from 'react-native';
 import {COLORS, SIZES, FONTS, icons, images, dummyData} from '../../constants';
 import {IconButton, TextButton, VerticalCourseCard,
@@ -7,19 +7,34 @@ import {IconButton, TextButton, VerticalCourseCard,
 } from '../../components';
 
 import { connect } from 'react-redux';
-import { toggleTheme } from '../../stores/themeActions';
-import appTheme from '../../constants/theme';
+// import { toggleTheme } from '../../stores/themeActions';
+import { toggleTheme } from '../../redux/actions/themeActions';
+// import appTheme from '../../constants/theme';
+import { useSelector, useDispatch } from 'react-redux';
 
-const Profile = ({ appTheme, toggleTheme}) => {
+const Profile = () => {
+
+    const { auth, themeReducer } = useSelector((state) => state);
+    const dispatch = useDispatch();
+
+    console.log("appTheme    Profile", themeReducer.appTheme,  auth)
+
+    const [appTheme, setAppTheme] = useState(false)
+
+    useEffect(()=> {
+        setAppTheme(themeReducer.appTheme)
+    }, [themeReducer])
 
     const [newCourseNotfication, setNewCourseNotification] = useState(false)
     const [studyReminder, setStudyRemider] = useState(false)
 
     function toggleThemeHandler() {
         if (appTheme?.name == "light"){
-            toggleTheme('dark')
+            dispatch(toggleTheme('dark'))
+            // toggleTheme('dark')
         } else {
-            toggleTheme('light')
+            dispatch(toggleTheme('light'))
+            // toggleTheme('light')
         }
     }
 
@@ -60,7 +75,7 @@ const Profile = ({ appTheme, toggleTheme}) => {
                 marginTop: SIZES.padding,
                 paddingHorizontal: SIZES.radius,
                 paddingVertical: 20,
-                borderRadius: SIZES.radius,
+                borderRadius:  12,
                 backgroundColor: appTheme?.backgroundColor2,
                }}
             >
@@ -286,22 +301,22 @@ const Profile = ({ appTheme, toggleTheme}) => {
     )
 }
 
-export default connect(mapStateProps, mapDispatchToProps) (Profile);
+export default Profile;
 
-function mapStateProps(state) {
-    return {
-        appTheme: state.appTheme,
-        error: state.error
-    }
-}
+// function mapStateProps(state) {
+//     return {
+//         appTheme: state.appTheme,
+//         error: state.error
+//     }
+// }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        toggleTheme: (themeType) => {
-            return dispatch(toggleTheme(themeType))
-        }
-    }
-}
+// function mapDispatchToProps(dispatch) {
+//     return {
+//         toggleTheme: (themeType) => {
+//             return dispatch(toggleTheme(themeType))
+//         }
+//     }
+// }
 
 
 const styles = StyleSheet.create({

@@ -15,6 +15,7 @@ const AuthModal = ({
   onRegister,
   onLogin,
   onForgotPasswordSubmit,
+  alert,
 }) => {
   // Bottom Sheet
 
@@ -109,6 +110,7 @@ const AuthModal = ({
             <Login 
             setSelectedScreen={setSelectedScreen} 
             onLogin={onLogin}
+            alert={alert}
             />
           </MotiView>
 
@@ -133,6 +135,7 @@ const AuthModal = ({
             <Register
               setSelectedScreen={setSelectedScreen}
               onRegister={onRegister}
+              alert={alert}
             />
           </MotiView>
 

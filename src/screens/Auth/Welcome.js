@@ -5,7 +5,18 @@ import {MotiView, useAnimationState} from 'moti';
 import {COLORS, FONTS, SIZES, icons, images, constants} from '../../constants';
 import {AuthModal, IconTextButton, TextButton} from '../../components';
 
+import { login, register } from '../../redux/actions/authAction';
+import { useSelector, useDispatch } from 'react-redux';
+import { Toast } from "react-native-toast-notifications";
+
+
 const Welcome = ({navigation}) => {
+
+  const { auth, alert } = useSelector((state) => state);
+  const dispatch = useDispatch();
+
+  console.log("auth AAA", auth)
+
   const [selectedScreen, setSelectedScreen] = useState('');
 
   // Bottom Modal
@@ -40,18 +51,38 @@ const Welcome = ({navigation}) => {
 
   // Handler
 
-  function onRegister() {
-    hideModal();
-    navigation.navigate('Otp', {
-      from: constants.register,
-    });
+  useEffect(() => {
+    if (auth.token) {
+      hideModal();
+      if(selectedScreen == constants.register){
+          navigation.navigate('Otp', {
+            from: constants.register,
+          });
+        }
+      if(selectedScreen == constants.login){
+        navigation.navigate('Dashboard', {
+          from: constants.login,
+        });
+      }
+    }
+  }, [auth.token ]);
+
+  function onRegister(userData) {
+    console.log("userData, uUUUUUU", userData)
+    dispatch(register(userData));
+    // console.log('userData', userData);
+
+    
   }
 
-  function onLogin() {
-    hideModal();
-    navigation.navigate('Dashboard', {
-      from: constants.register,
-    });
+
+  function onLogin(userData) {
+    console.log("userData, LLL", userData)
+    dispatch(login(userData));
+    // hideModal();
+    // navigation.navigate('Dashboard', {
+    //   from: constants.register,
+    // });
   }
 
   function onForgotPasswordSubmit() {
@@ -182,6 +213,7 @@ const Welcome = ({navigation}) => {
         {/* Login Details */}
         {renderLoginDetails()}
 
+      
         <AuthModal
           bottomSheetModalRef={bottomSheetModalRef}
           hideModal={hideModal}
@@ -190,8 +222,10 @@ const Welcome = ({navigation}) => {
           onRegister={onRegister}
           onLogin={onLogin}
           onForgotPasswordSubmit={onForgotPasswordSubmit}
+          alert={alert}
         />
       </MotiView>
+      
     </View>
   );
 };

@@ -9,7 +9,7 @@ import {
 // import { Shadow } from 'react-native-shadow-2';
 import { Home, Profile, Search} from "../../screens"
 import { COLORS, SIZES , FONTS, constants } from "../../constants";
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 
 const bottom_tabs = constants.bottom_tabs.map((bottom_tabs) => ({
@@ -124,7 +124,16 @@ const Tabs = ({scrollX, onBottomTabPress}) => {
     )
 }
 
-const MainLayout = ({appTheme}) => {
+const MainLayout = () => {
+
+    const { auth, themeReducer } = useSelector((state) => state);
+    const dispatch = useDispatch();
+
+    const [appTheme, setAppTheme] = useState(false)
+
+    useEffect(()=> {
+        setAppTheme(themeReducer.appTheme)
+    }, [themeReducer])
 
     const flatListRef = React.useRef()
     const scrollX = React.useRef(new Animated.Value(0)).current;
@@ -208,7 +217,7 @@ const MainLayout = ({appTheme}) => {
             {/* <View> */}
                 <View style={{
                 flex: 1,
-                borderRadius: SIZES.radius,
+                borderRadius: 12,
                 backgroundColor: appTheme?.backgroundColor2
             }}>
                 <Tabs 
@@ -238,15 +247,15 @@ const MainLayout = ({appTheme}) => {
     )
 }
 
-export default connect(mapStateProps, mapDispatchToProps) (MainLayout);
+export default MainLayout;
 
-function mapStateProps(state) {
-  return {
-      appTheme: state.appTheme,
-  }
-}
+// function mapStateProps(state) {
+//   return {
+//       appTheme: state.appTheme,
+//   }
+// }
 
-function mapDispatchToProps(dispatch) {
-  return {
-      }
-}
+// function mapDispatchToProps(dispatch) {
+//   return {
+//       }
+// }

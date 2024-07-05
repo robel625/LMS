@@ -1,19 +1,24 @@
 import React, {useState} from 'react';
-import {Image, Text, TouchableOpacity, View, Keyboard} from 'react-native';
+import {Image, Text, TouchableOpacity, View} from 'react-native';
 
 import {COLORS, FONTS, SIZES, constants, icons} from '../../constants';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {FormInput, IconButton, TextButton} from '../../components';
+import { useSelector, useDispatch } from 'react-redux';
 
 
-const Register = ({setSelectedScreen, onRegister, alert}) => {
+const SignUp = () => {
+
+  const { auth, alert } = useSelector((state) => state);
+  const dispatch = useDispatch();
+
   // State
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isVisible, setIsVisible] = useState(false);
 
-  // console.log("alert inside register", alert)
+  console.log("alert inside register", alert)
 
     //  Render
   function renderTitleAndDescription() {
@@ -208,7 +213,7 @@ const Register = ({setSelectedScreen, onRegister, alert}) => {
               backgroundColor: null,
             }}
             labelStyle={{color: COLORS.primary400}}
-            onPress={() => setSelectedScreen(constants.login)}
+            // onPress={() => setSelectedScreen(constants.login)}
           />
         </View>
 
@@ -221,15 +226,14 @@ const Register = ({setSelectedScreen, onRegister, alert}) => {
             borderRadius: SIZES.radius,
             height: 55,
           }}
-          onPress={() => {
-            Keyboard.dismiss();
-            const userData = {
-              phone,
-              email,
-              password,
-            }
-            onRegister(userData);
-          }}
+        //   onPress={() => {
+        //     const userData = {
+        //       phone,
+        //       email,
+        //       password,
+        //     }
+        //     onRegister(userData);
+        //   }}
         />
       </View>
     );
@@ -254,13 +258,12 @@ const Register = ({setSelectedScreen, onRegister, alert}) => {
 
         {/* Terms and Privacy Policy */}
         {renderTermsAndPolicy()}
-      
+      </KeyboardAwareScrollView>
 
       {/* Footer */}
       {renderFooter()}
-      </KeyboardAwareScrollView>
     </View>
   );
 };
 
-export default Register;
+export default SignUp;
