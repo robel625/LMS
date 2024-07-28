@@ -38,7 +38,7 @@ import Exam from './src/screens/Exams/Exam';
 import { getUserData } from './src/utils/utils';
 import { saveUserData } from './src/redux/actions/authAction';
 import YoutubeListing from './src/screens/Course/YoutubeListing';
-
+import RealmCustomProvider from './src/realm/providers/Realm';
 
 
 const Stack = createNativeStackNavigator();
@@ -77,6 +77,7 @@ const App = () => {
   return (
     <GestureHandlerRootView style={{flex: 1}}>
       <BottomSheetModalProvider>
+       <RealmCustomProvider>
       <DataProvider>
       <ToastProvider>
          <Alert />
@@ -142,6 +143,7 @@ const App = () => {
         </NavigationContainer>
         </ToastProvider>
         </DataProvider>
+        </RealmCustomProvider>
       </BottomSheetModalProvider>
     </GestureHandlerRootView>
   );

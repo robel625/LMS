@@ -18,7 +18,7 @@ const { auth, alert } = useSelector((state) => state);
   const [isVisible, setIsVisible] = useState(false);
   const [rememberMeChecked, setRememberMeChecked] = useState(false);
 
-  console.log("auth inside login", auth)
+  // console.log("auth inside login", auth)
 
   useEffect(() => {
     if (auth.token) {

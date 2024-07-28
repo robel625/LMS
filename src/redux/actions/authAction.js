@@ -6,7 +6,7 @@ import {clearUserData, setUserData } from "../../utils/utils";
 
 
 export const saveUserData = (data) => async (dispatch) => {
-    console.log("auth data", data)
+    // console.log("auth data", data)
     try {
     dispatch({ 
         type: GLOBALTYPES.AUTH, 
@@ -15,9 +15,9 @@ export const saveUserData = (data) => async (dispatch) => {
             user: data.user_data.user
         } 
     })
-    console.log("savedauth data", data)
+    // console.log("savedauth data", data)
     } catch (err) {
-        console.log("errr savedauth data", err)
+        // console.log("errr savedauth data", err)
         dispatch({ 
             type: GLOBALTYPES.ALERT, 
             payload: {

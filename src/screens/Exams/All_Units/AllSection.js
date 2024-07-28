@@ -84,7 +84,7 @@ const AllSection = ({ navigation, subject, years }) => {
         data={years}
         showsVerticalScrollIndicator={false}
         listKey="BrowseYear"
-        keyExtractor={item => `BrowseYear-${item.id}`}
+        keyExtractor={item => `BrowseYear-${item._id}`}
         contentContainerStyle={{
           marginTop: SIZES.radius
         }}

@@ -43,49 +43,49 @@ const categories = [
 
 const SubjectCatagory = [
     {
-        id: 0,
+        id: 1,
         title: "BIOLOGY",
         background: require("../assets/images/bg_1.png"),
         thumbnail: require("../assets/images/microscope.png")
     },
     {
-        id: 1,
+        id: 2,
         title: "CHEMISTRY",
         background: require("../assets/images/bg_2.png"),
         thumbnail: require("../assets/images/chemical-industrial.png")
     },
     {
-        id: 2,
+        id: 3,
         title: "MATHS",
         background: require("../assets/images/bg_3.png"),
         thumbnail: require("../assets/images/maths.png")
     },
     {
-        id: 3,
+        id: 4,
         title: "ENGLISH",
         background: require("../assets/images/bg_4.png"),
         thumbnail: require("../assets/images/english.png")
     },
     {
-        id: 4,
+        id: 5,
         title: "PHYSICS",
         background: require("../assets/images/bg_4.png"),
         thumbnail: require("../assets/images/physics.png")
     },
     {
-        id: 5,
+        id: 6,
         title: "GEOGRAPHY",
         background: require("../assets/images/bg_5.png"),
         thumbnail: require("../assets/images/globe-geography.png")
     },
     {
-        id: 6,
+        id: 7,
         title: "HISTORY",
         background: require("../assets/images/bg_6.png"),
         thumbnail: require("../assets/images/history-storytelling.png")
     },
     {
-        id: 7,
+        id: 8,
         title: "CIVICS",
         background: require("../assets/images/bg_1.png"),
         thumbnail: require("../assets/images/civic.png")
@@ -99,14 +99,14 @@ const HomeCatagory = [
         id: 0,
         title: "UEE Questions",
         background: require("../assets/images/bg_1.png"),
-        thumbnail: require("../assets/images/microscope.png"),
+        thumbnail: require("../assets/images/dashboard/exams.png"),
         navigate: 'SubjectListing'
     },
     {
         id: 1,
         title: "Videos",
         background: require("../assets/images/bg_2.png"),
-        thumbnail: require("../assets/images/chemical-industrial.png"),
+        thumbnail: require("../assets/images/dashboard/youtube-play.png"),
         navigate: 'YoutubeListing',
         payment: false
     },
@@ -114,21 +114,21 @@ const HomeCatagory = [
         id: 2,
         title: "Weekly Test",
         background: require("../assets/images/bg_3.png"),
-        thumbnail: require("../assets/images/maths.png"),
+        thumbnail: require("../assets/images/dashboard/quiz.png"),
         navigate: 'Weekly Test'
     },
     {
         id: 3,
         title: "pre intrance exam",
         background: require("../assets/images/bg_4.png"),
-        thumbnail: require("../assets/images/english.png"),
+        thumbnail: require("../assets/images/dashboard/pre-exams.png"),
         navigate: 'Weekly Test'
     },
     {
         id: 4,
         title: "premier tutorial",
         background: require("../assets/images/bg_5.png"),
-        thumbnail: require("../assets/images/physics.png"),
+        thumbnail: require("../assets/images/dashboard/tutorial.png"),
         navigate: 'YoutubeListing',
         payment: true
     },
@@ -136,7 +136,7 @@ const HomeCatagory = [
         id: 5,
         title: "Note",
         background: require("../assets/images/bg_6.png"),
-        thumbnail: require("../assets/images/globe-geography.png"),
+        thumbnail: require("../assets/images/dashboard/notes.png"),
         navigate: 'Weekly Test'
     }
 ]

@@ -3,9 +3,11 @@ import { EditData, DeleteData } from '../actions/globalTypes'
 
 const initialState = {
     years: [],
+    allYears: [],
     questions: [],
     questionByid: '',
     units: '',
+    allUnits: [],
     unit_questions: '',
 }
 
@@ -16,7 +18,9 @@ const questionReducer  = (state = initialState, action) => {
                 ...state,
                 
                 years: action.payload.yearData,
-                units: action.payload.unitData
+                units: action.payload.unitData,
+                allYears: action.payload.allYearData,
+                allUnits: action.payload.allUnitData,
             };
         case QUESTION_TYPES.GET_QUESTION:
             return {

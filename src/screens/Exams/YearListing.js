@@ -8,6 +8,9 @@ import AllSection from './All_Units/AllSection';
 import UnitSection from './All_Units/UnitSection';
 import { useSelector, useDispatch } from 'react-redux';
 import { getYear } from '../../redux/actions/questionAction';
+import { useRealm, useQuery , useWrite } from '@realm/react';
+import {Realm } from 'realm';
+import { realmConfig, UnitSchema, Year, YearSchema } from '../../realm/models/exam';
 
 const ALL_Units_Option = constants.ALL_Units_Option.map((ALL_Units_Option) =>({
     ...ALL_Units_Option,
@@ -121,22 +124,117 @@ const Tabs = ({ scrollX, onTabPress }) => {
 const YearListing = ({ navigation, route }) => {
 
   const {subject} = route.params;
-
-  const { auth, exam} = useSelector((state) => state);
+  //console.log("subject router RRRRRRRRRRRRRRRRRRRRRRRRRR", subject)
+  const auth = useSelector((state) => state.auth);
+  const exam = useSelector((state) => state.exam);
   const dispatch = useDispatch();
+  const realm = useRealm();
 
-  console.log("yearlisting auth", exam)
+  let YearSchema1 = useQuery(Year);
+  const Yearfiltered = YearSchema1.filtered(`subject == "${subject.id}"`);
+  //console.log("YearSchema1 provider jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj", YearSchema1)
+  let UnitSchema1 = useQuery('Unit');
+  // console.log("unitSchema uuuuuuuuuuuuuuuuuuuuu", UnitSchema1 )
+
+   const processData = () => {
+      const transformedData = {};
+    
+      UnitSchema1.forEach(item => {
+        if (item.subject.toLowerCase() === subject.title.toLowerCase()) {
+          const { subject, grade } = item;
+      
+          if (!transformedData[subject]) {
+            transformedData[subject] = {};
+          }
+      
+          if (!transformedData[subject][grade]) {
+            transformedData[subject][grade] = [];
+          }
+      
+          transformedData[subject][grade].push({
+            "id": item.id,
+            "unit": item.unit,
+            "title": item.title,
+            "number_of_Questions": item.number_of_Questions
+          });
+        }
+       });
+       
+       console.log("transformedData DDDDDDDDDDDDDDDDDDDDDD",transformedData);
+       return transformedData
+    }
 
   const [years, setYears] = useState("")
   const [units, setUnits] = useState("")
 
    useEffect(() => {
-    setYears(exam.years)
-    setUnits(exam.units)
+    setYears(Yearfiltered)
+    setUnits(processData())
+    // setYears(exam.years)
+    //setUnits(exam.units)
+   
+    const year1 = exam.allYears
+    const unit1 = exam.allUnits
+    createRealmData(year1, unit1)
+    // let realm;
+
+    const fetchData = async () => {
+      try {
+        // const realm = useRealm();
+        // realm.write(() => {
+        //   realm.create('Year', {id: "9", year:"jnj1678",
+        //     subject: "KKKKKKKKKKKKKKKKKK",
+        //     number_of_Questions: '78',
+        //     time_Allowed: '60'})
+        //   });
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        // if (realm) {
+        //   realm.close();
+        // }
+      }
+    };
+
+    fetchData();
   }, [exam]);
+
+  const createRealmData = (year1, unit1) => {
+    // console.log('year1111111111111111111', YearSchema1)
+    const foundYear = YearSchema1.find(year => year.subject === String(year1[0]?.subject));
+    // console.log('foundYear222222222222222', foundYear)
+    if (!foundYear) {
+        realm.write(() => {
+            year1?.forEach(year => {
+              realm.create('Year', {id: String(year.id), year: year.year,
+                  subject: String(year.subject),
+                  number_of_Questions: String(year.number_of_Questions),
+                  time_Allowed: String(year.time_Allowed)});
+            });
+            unit1.forEach(unit => {
+              realm.create('Unit', {
+                id: unit.id,
+                subject: unit.subject,
+                grade: unit.grade,
+                unit: unit.unit,
+                title: unit.title,
+                number_of_Questions: unit.number_of_Questions
+              });
+            });
+          });
+        }
+
+          // realm.write(() => {
+          //   realm.delete(YearSchema1);
+          // });
+  
+};
  
   useEffect(() => {
-    dispatch(getYear({subject, auth}))
+    const foundYear = YearSchema1.find(year => year.subject === String(subject.id));
+    if (!foundYear) {
+      dispatch(getYear(subject.title, auth));
+    }
   }, []);
 
 
@@ -190,7 +288,7 @@ const YearListing = ({ navigation, route }) => {
                     ...FONTS.h2,
                     color: COLORS.white
                 }} >
-                    {subject}
+                    {subject.title}
                 </Text>
                 </View>
 
@@ -261,8 +359,8 @@ const YearListing = ({ navigation, route }) => {
                             width: SIZES.width
                           }}
                         >
-                            {index == 0 && <AllSection navigation={navigation} subject={subject} years={years}/>}
-                            {index == 1 && <UnitSection navigation={navigation} subject={subject} units={units}/>}
+                            {index == 0 && <AllSection navigation={navigation} subject={subject.title} years={years}/>}
+                            {index == 1 && <UnitSection navigation={navigation} subject={subject.title} units={units}/>}
                     </View>
                     )
                   }}

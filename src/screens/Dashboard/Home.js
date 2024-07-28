@@ -52,7 +52,7 @@ const Home = () => {
   useEffect(() => {
     (async()=>{
       const userData = await getUserData()
-      console.log("user data App.js",userData)
+      // console.log("user data App.js",userData)
       if(!!userData){
         dispatch(saveUserData(userData))
       }  

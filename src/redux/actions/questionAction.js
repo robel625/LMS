@@ -22,12 +22,12 @@ export const QUESTION_TYPES = {
   };
 
   
-  export const getYear = ({subject, auth}) => async (dispatch) => {
+  export const getYear = (subject, auth) => async (dispatch) => {
     try {
       console.log('getyears redux', subject, auth.token)
       dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: true } });
       const res = await getDataAPI(`exam/getYear/${subject}`, auth.token);
-      console.log("getYear YYYYYYYYZZZZZZZZZZZZZZ", res.data)
+      // console.log("getYear YYYYYYYYZZZZZZZZZZZZZZ", res.data)
       dispatch({
         type: QUESTION_TYPES.GET_YEAR,
         payload: res.data,
@@ -36,7 +36,7 @@ export const QUESTION_TYPES = {
       
       dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: false } });
     } catch (err) {
-      console.log("error getYear YYYYYYYYZZZZZZZZZZZZZZ", err)
+      // console.log("error getYear YYYYYYYYZZZZZZZZZZZZZZ", err)
       dispatch({
         type: GLOBALTYPES.ALERT,
         payload: { error: err.response.data.msg },
