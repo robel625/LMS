@@ -1,11 +1,16 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Image, Keyboard, Text, View} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 import {CheckBox, FormInput, IconButton, TextButton} from '../../components';
 import {COLORS, FONTS, SIZES, constants, icons} from '../../constants';
+import { useSelector, useDispatch } from 'react-redux';
+import { login } from '../../redux/actions/authAction';
 
-const Login = ({setSelectedScreen, onLogin, alert}) => {
+const Login = ({navigation}) => {
+
+const { auth, alert } = useSelector((state) => state);
+  const dispatch = useDispatch();
   // State
   const [phoneNumber, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
@@ -13,15 +18,23 @@ const Login = ({setSelectedScreen, onLogin, alert}) => {
   const [isVisible, setIsVisible] = useState(false);
   const [rememberMeChecked, setRememberMeChecked] = useState(false);
 
-  console.log("alert inside login", alert)
+  console.log("auth inside login", auth)
 
-  const handleSubmit = () =>{
+  useEffect(() => {
+    if (auth.token) {
+        navigation.navigate('Dashboard', {
+                    from: constants.login,
+                  });
+    }
+  }, [auth.token ]);
+
+  function handleSubmit() {
     Keyboard.dismiss();
-    const userData = {
+     const userData = {
       email,
       password,
     }
-    onLogin(userData);
+    dispatch(login(userData))
   }
 
   // Render
@@ -74,7 +87,7 @@ const Login = ({setSelectedScreen, onLogin, alert}) => {
           labelStyle={{
             color: COLORS.primary400,
           }}
-          onPress={() => setSelectedScreen(constants.forgot_password)}
+          onPress={() => navigation.navigate("ForgotPassword")}
         />
       </View>
     );
@@ -102,7 +115,7 @@ const Login = ({setSelectedScreen, onLogin, alert}) => {
               backgroundColor: null,
             }}
             labelStyle={{color: COLORS.primary400}}
-            onPress={() => setSelectedScreen(constants.register)}
+            onPress={() =>  navigation.navigate('SignUp') }
           />
         </View>
 
@@ -122,9 +135,10 @@ const Login = ({setSelectedScreen, onLogin, alert}) => {
   }
   return (
     <View
-      style={{
-        flex: 1,
-      }}>
+        style={{
+          flex: 1,
+          padding: SIZES.padding,
+          backgroundColor: COLORS.backgroundPrimary,}}>
       <KeyboardAwareScrollView
         enableOnAndroid={true}
         keyboardDismissMode="on-drag"
@@ -221,11 +235,11 @@ const Login = ({setSelectedScreen, onLogin, alert}) => {
 
         {/* Remember me and Forgot Password */}
         {renderRememberMenAndForgotPassword()}
-      
+        </KeyboardAwareScrollView>
 
       {/* Footer */}
       {renderFooter()}
-      </KeyboardAwareScrollView>
+     
     </View>
   );
 };

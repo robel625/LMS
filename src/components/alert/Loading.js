@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   useWindowDimensions,
   View,
@@ -9,10 +9,23 @@ import {
 import { COLORS } from '../../constants';
 // import COLORS from '../conts/colors';
 
-const Loading = ({visible = false}) => {
+const Loading = ({visible = true}) => {
   const {width, height} = useWindowDimensions();
+
+  const [isVisible, setIsVisible] = useState(visible); // Manage visibility state
+
+  useEffect(() => {
+    if (isVisible) {
+      const timeoutId = setTimeout(() => setIsVisible(false), 20000); // Timeout in milliseconds
+
+      // Cleanup function to clear the timeout when the component unmounts
+      return () => clearTimeout(timeoutId);
+    }
+  }, [isVisible]);
+
+
   return (
-    visible && (
+    isVisible && (
       <View style={[style.container, {height, width}]}>
         <View style={style.loader}>
           <ActivityIndicator size="large" color={COLORS.blue} />

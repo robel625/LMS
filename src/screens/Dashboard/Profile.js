@@ -17,13 +17,13 @@ const Profile = () => {
     const { auth, themeReducer } = useSelector((state) => state);
     const dispatch = useDispatch();
 
-    console.log("appTheme    Profile", themeReducer.appTheme,  auth)
+    // console.log("appTheme    Profile", themeReducer.appTheme,  auth)
 
     const [appTheme, setAppTheme] = useState(false)
 
     useEffect(()=> {
         setAppTheme(themeReducer.appTheme)
-    }, [themeReducer])
+    }, [themeReducer, appTheme])
 
     const [newCourseNotfication, setNewCourseNotification] = useState(false)
     const [studyReminder, setStudyRemider] = useState(false)
@@ -76,7 +76,7 @@ const Profile = () => {
                 paddingHorizontal: SIZES.radius,
                 paddingVertical: 20,
                 borderRadius:  12,
-                backgroundColor: appTheme?.backgroundColor2,
+                backgroundColor: themeReducer?.appTheme?.backgroundColor2,
                }}
             >
                 <TouchableOpacity

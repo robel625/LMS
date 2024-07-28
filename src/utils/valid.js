@@ -1,4 +1,4 @@
-const valid = ({fullname, username, email, password, cf_password}) => {
+const valid = ({fullname, username,phone, email, password, cf_password}, isLogin = false) => {
     const err = {}
 
     // if(!fullname) {
@@ -12,6 +12,12 @@ const valid = ({fullname, username, email, password, cf_password}) => {
     // }else if(username.replace(/ /g, '').length > 25){
     //     err.username = "User name is up to 25 characters long."
     // }
+    if(!isLogin){
+    if(!phone) {
+        err.phone = "Please add your Phone number."
+    }else if(!phone.match(/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/)){
+        err.phone = "Please input a valid phone number"
+    }}
 
     if(!email) {
         err.email = "Please add your email."
@@ -19,11 +25,11 @@ const valid = ({fullname, username, email, password, cf_password}) => {
         err.email = "Email format is incorrect."
     }
 
-    if(!password) {
-        err.password = "Please add your password."
-    }else if(password.length < 6){
-        err.password = "Password must be at least 6 characters."
-    }
+    // if(!password) {
+    //     err.password = "Please add your password."
+    // }else if(password.length < 6){
+    //     err.password = "Password must be at least 6 characters."
+    // }
 
     // if(password !== cf_password) {
     //     err.cf_password = "Confirm password did not match."

@@ -3,32 +3,49 @@ import React, { createRef, useCallback, useEffect, useRef, useState } from 'reac
 import { COLORS, FONTS, SIZES, images, icons, dummyData, constants } from "../../../constants"
 import {
   IconButton,
-  LineDivider, TextButton, HorizontalCourseCard, IconLabel
+  LineDivider, TextButton, HorizontalCourseCard, IconLabel,
+  HorizontalLectureCard,
 } from '../../../components';
 
-const CourseChapters = () => {
+const truncateDescription = (description, maxLength) => {
+  return description.length > maxLength ? `${description.substring(0, maxLength)}...` : description;
+};
+
+const CourseChapters = ({lectures, selectedLecture, chooseLecture}) => {
+
+  const [showFullDescription, setShowFullDescription] = useState(false);
+
+  const maxLength = 100; // Adjust the maximum length as needed
+
+  let truncatedDescription = ""
+  if (selectedLecture?.youtubeDescription){
+    truncatedDescription = truncateDescription(selectedLecture.youtubeDescription, maxLength);
+  }
 
   function renderHeader() {
     return (
       <View
         style={{
-          marginTop: SIZES.padding,
-          paddingHorizontal: SIZES.padding
+          marginTop: SIZES.radius,
+          paddingHorizontal: SIZES.radius
         }}
       >
         <Text
           style={{
             ...FONTS.h2,
-            color: COLORS.black
+            color: COLORS.black,
+            marginLeft: SIZES.radius,
           }}
         >
-          {dummyData?.course_details?.title}
+          {selectedLecture?.title}
         </Text>
+
+        
 
         <View
           style={{
             flexDirection: 'row',
-            marginTop: SIZES.base
+            marginTop: SIZES.base,
           }}
         >
           <Text
@@ -37,12 +54,12 @@ const CourseChapters = () => {
               ...FONTS.body4
             }}
           >
-            {dummyData?.course_details?.number_of_students}
+            {selectedLecture?.publishedAt}
           </Text>
-
+          
           <IconLabel
             icon={icons.time}
-            label={dummyData?.course_details?.duration}
+            label={selectedLecture?.duration}
             containerStyle={{
               marginLeft: SIZES.radius
             }}
@@ -54,11 +71,12 @@ const CourseChapters = () => {
               ...FONTS.body4
             }}
           />
+          
 
 
         </View>
 
-        <View
+        {/* <View
           style={{
             flexDirection: 'row',
             marginTop: SIZES.radius,
@@ -113,7 +131,19 @@ const CourseChapters = () => {
 
           />
 
-        </View>
+        </View> */}
+
+{selectedLecture?.youtubeDescription &&
+      <>
+          <Text style={{ color: COLORS.gray30, ...FONTS.body4 }}>
+        {showFullDescription ? selectedLecture.youtubeDescription : truncatedDescription}
+      </Text>
+      {selectedLecture.youtubeDescription.length > maxLength && (
+        <TouchableOpacity onPress={() => setShowFullDescription(!showFullDescription)}>
+          <Text style={{ color: "blue", ...FONTS.body4 }}>{showFullDescription ? 'Less' : 'More'}</Text>
+        </TouchableOpacity>
+      )}
+    </>}
 
       </View>
     )
@@ -258,7 +288,7 @@ const CourseChapters = () => {
                  color: COLORS.black
             }}
           >
-             Popular Courses
+             Courses
           </Text>
           <TextButton
              contentContainerStyle={{
@@ -274,24 +304,28 @@ const CourseChapters = () => {
 
          {/* Popular Course List */}
          <FlatList
-                data={dummyData.courses_list_2}
+                data={lectures}
                 listKey="PopularCourses"
                 scrollEnabled={false}
                 keyExtractor={item => `PopularCourses-${item.id}`}
                 showsHorizontalScrollIndicator = {false}
                 contentContainerStyle={{
                   marginTop: SIZES.radius,
-                  paddingHorizontal: SIZES.padding
+                  // paddingHorizontal: SIZES.padding
                 }}
                 renderItem={({ item, index }) => (
-                  <HorizontalCourseCard
-                     course={item}
-                     containerStyle={{
-                      marginVertical: SIZES.padding,
-                      marginTop: index == 0 ? SIZES.radius : SIZES.padding
-                     }}
+                  <HorizontalLectureCard
+                      course={item}
+                      containerStyle={{
+                          // marginVertical: SIZES.padding,
+                          paddingTop: selectedLecture?.id == item.id  ? SIZES.radius : 5,
+                          backgroundColor: selectedLecture?.id == item.id ? '#fcf5d2' : null,
+                          paddingHorizontal: SIZES.padding
+                      }}
+                      onPress={() => chooseLecture(item.id)}
+                      paid={false}
                   />
-                )}
+              )}
               ItemSeparatorComponent={() => (
                 <LineDivider/>
               )}
@@ -314,10 +348,10 @@ const CourseChapters = () => {
       />
 
       {/* Chapter */}
-      {renderChapter()}
+      {/* {renderChapter()} */}
 
       {/* Popular Courses */}
-      {/* {renderPopularCourses()} */}
+      {renderPopularCourses()}
     </ScrollView>
   )
 }

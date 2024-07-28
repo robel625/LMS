@@ -212,13 +212,14 @@ const MainLayout = () => {
               shadowColor: '#000', // Optional: Set shadow color
               shadowOffset: { width: 0, height: 2 }, // Optional: Adjust shadow offset
               shadowOpacity: 0.2, // Optional: Control shadow opacity
+              backgroundColor: appTheme?.backgroundColor2
             }}
             >
             {/* <View> */}
                 <View style={{
                 flex: 1,
                 borderRadius: 12,
-                backgroundColor: appTheme?.backgroundColor2
+                
             }}>
                 <Tabs 
                   scrollX={scrollX}

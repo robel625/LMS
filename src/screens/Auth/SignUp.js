@@ -1,13 +1,14 @@
-import React, {useState} from 'react';
-import {Image, Text, TouchableOpacity, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {Image, Keyboard, Text, TouchableOpacity, View} from 'react-native';
 
 import {COLORS, FONTS, SIZES, constants, icons} from '../../constants';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {FormInput, IconButton, TextButton} from '../../components';
 import { useSelector, useDispatch } from 'react-redux';
+import { register } from '../../redux/actions/authAction';
 
 
-const SignUp = () => {
+const SignUp = ({navigation}) => {
 
   const { auth, alert } = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -19,6 +20,27 @@ const SignUp = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   console.log("alert inside register", alert)
+
+  useEffect(() => {
+    if (auth.token) {
+        navigation.navigate('Dashboard', {
+            from: constants.register,
+          });
+    }
+  }, [auth.token ]);
+
+  function handleSubmit () {
+    Keyboard.dismiss();
+        const userData = {
+              phone,
+              email,
+              password,
+            }
+    dispatch(register(userData));
+    // console.log('userData', userData);
+
+    
+  }
 
     //  Render
   function renderTitleAndDescription() {
@@ -64,6 +86,7 @@ const SignUp = () => {
             />
           }
         />
+        {alert.phone && <Text style={{ color: "#fd2d6a"}} >{alert.phone}</Text>}
 
         {/* Email */}
         <FormInput
@@ -213,7 +236,7 @@ const SignUp = () => {
               backgroundColor: null,
             }}
             labelStyle={{color: COLORS.primary400}}
-            // onPress={() => setSelectedScreen(constants.login)}
+            onPress={() => navigation.navigate('Login')}
           />
         </View>
 
@@ -226,20 +249,17 @@ const SignUp = () => {
             borderRadius: SIZES.radius,
             height: 55,
           }}
-        //   onPress={() => {
-        //     const userData = {
-        //       phone,
-        //       email,
-        //       password,
-        //     }
-        //     onRegister(userData);
-        //   }}
+        onPress={handleSubmit}
         />
       </View>
     );
   }
   return (
-    <View style={{flex: 1}}>
+    <View
+        style={{
+          flex: 1,
+          padding: SIZES.padding,
+          backgroundColor: COLORS.backgroundPrimary,}}>
       <KeyboardAwareScrollView
         enableOnAndroid={true}
         keyboardDismissMode="on-drag"

@@ -14,16 +14,15 @@ import Maths from '../../data/ministry/Maths';
 import SocialStudy from '../../data/model/SocialStudy';
 import G6_English from '../../data/ministry/G6_English';
 import GeneralScience from '../../data/model/GeneralScience';
-import { getQuestion } from '../../redux/actions/questionAction';
+import { getQuestion, getUnitQuestion } from '../../redux/actions/questionAction';
 import { useSelector, useDispatch } from 'react-redux';
-import { BASE_URL } from '../../utils/config';
 
 
-const Exam = ({ navigation, route }) => {
+const UnitQuestions = ({ navigation, route }) => {
 
-  const { subject, yearitem } = route.params;
+  const { subject, unit, grade } = route.params;
 
-  console.log("subject, year", subject, yearitem)
+  console.log("subject, unit, grade", subject, unit.unit, grade)
 
   const { auth, exam } = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -32,14 +31,14 @@ const Exam = ({ navigation, route }) => {
 
   useEffect(() => {
     if (auth) {
-      const data = { subject, year: yearitem.year };
-      dispatch(getQuestion({ data, auth }))
+      const data = { subject, unit: unit.unit, grade };
+      dispatch(getUnitQuestion({ data, auth }))
     }
   }, [auth]);
 
   useEffect(() => {
-    setQuestions(exam.questions)
-  }, [exam.questions]);
+    setQuestions(exam.unit_questions)
+  }, [exam.unit_questions]);
 
   const [selectedValue, setSelectedValue] = useState(null);
   //  const exam = SocialStudy
@@ -92,7 +91,7 @@ const Exam = ({ navigation, route }) => {
   const ListFooter = () => {
     return (
       <View style={{ marginBottom: 20 }}>
-        <TouchableOpacity onPress={() => setShowScoreModal(!showScoreModal)}>
+        {questions.length > 3 && <TouchableOpacity onPress={() => setShowScoreModal(!showScoreModal)}>
           <Text
             style={{
               ...FONTS.h1,
@@ -104,7 +103,7 @@ const Exam = ({ navigation, route }) => {
               margin: SIZES.padding
             }}
           > END</Text>
-        </TouchableOpacity>
+        </TouchableOpacity>}
       </View>
     );
   };
@@ -223,26 +222,12 @@ const Exam = ({ navigation, route }) => {
               navigation.goBack()
             }}
           />
-          {!timerOn && <Text style={{
+          <Text style={{
             ...FONTS.h2,
             color: COLORS.white
           }} >
-            {subject}
-          </Text>}
-
-          <CountDown
-            size={timerOn ? 15 : 0}
-            until={yearitem.time_Allowed * 60}
-            onFinish={() => alert('Finished')}
-            digitStyle={{ backgroundColor: 'transparent', }}
-            digitTxtStyle={{ color: 'white' }}
-            timeLabelStyle={{ color: 'white' }}
-            separatorStyle={{ color: 'white' }}
-            timeToShow={['H', 'M', 'S']}
-            timeLabels={{ m: null, s: null }}
-            showSeparator
-            running={timerOn ? true : false}
-          />
+            {subject}  unit {unit.unit}
+          </Text>
 
         </View>
 
@@ -261,7 +246,7 @@ const Exam = ({ navigation, route }) => {
             alignItems: 'center'
           }}
         >
-          <TouchableOpacity
+          {/* <TouchableOpacity
             onPress={() => setTimerOn(!timerOn)}
           >
             <View
@@ -277,7 +262,7 @@ const Exam = ({ navigation, route }) => {
                 fontSize: 25
               }} />}
             </View>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
 
           <TouchableOpacity onPress={() => setShowScoreModal(!showScoreModal)}>
             <Icon name="check" style={{
@@ -325,7 +310,7 @@ const Exam = ({ navigation, route }) => {
               margin: 5,
             }}
           >
-            {item.id == -1 && <>
+            {/* {item.id == -1 && <>
                  {item.header1 && <Text style={{
               paddingVertical: 5,
               ...FONTS.h1,
@@ -349,7 +334,7 @@ const Exam = ({ navigation, route }) => {
               color: COLORS.black,
               paddingHorizontal: SIZES.radius
             }}>{item.paragraph}</Text>}
-            </>}
+            </>} */}
 
 
             {item.id != -1 && <>
@@ -392,7 +377,7 @@ const Exam = ({ navigation, route }) => {
               }}
             >
               <Image
-            source={{ uri: `${BASE_URL}/${item.question_pic}` }} // Use source as an object with a uri property
+            source={{ uri: `http://192.168.18.86:8000/${item.question_pic}` }} // Use source as an object with a uri property
             style={{ resizeMode: 'contain', width: '100%', height: 150 }} // Set image dimensions
           />
             </View>}
@@ -401,40 +386,6 @@ const Exam = ({ navigation, route }) => {
             {renderOptions(item, item.option2.trim())}
             {renderOptions(item, item.option3.trim())}
             {renderOptions(item, item.option4.trim())}
-
-           
-
-            {/* {item.header1 && <Text style={{
-              paddingVertical: 5,
-              ...FONTS.h1,
-              fontSize: 25,
-              color: COLORS.black,
-              paddingHorizontal: SIZES.radius,
-              textAlign: 'center'
-            }}>{item.header1}</Text>}
-
-            {item.header2 && <Text style={{
-              paddingVertical: 5,
-              ...FONTS.h2,
-              fontSize: 20,
-              color: COLORS.black,
-              paddingHorizontal: SIZES.radius
-            }} >{item.header2}</Text>}
-
-            {item.passage && <Text style={{
-              paddingVertical: 5,
-              ...FONTS.body3,
-              color: COLORS.black,
-              paddingHorizontal: SIZES.radius
-            }}>{item.passage}</Text>} */}
-
-            {/* {
-              item?.options?.map(option => (
-                <View>
-                  {renderOptions(item, option.trim())}
-                </View>
-              ))
-            } */}
 
             {(item.explanation || item.explanation_pic) && showExplanationButton == item.id &&
               <View>
@@ -447,7 +398,7 @@ const Exam = ({ navigation, route }) => {
                 </Text>}
 
                 {(explanation && item.explanation_pic) &&
-                  <Image source={{ uri: `${BASE_URL}/${item.explanation_pic}` }}
+                  <Image source={{ uri: `http://192.168.18.86:8000/${item.explanation_pic}` }}
                   style={{ resizeMode: 'contain', width: '100%', height: 150 }}
                   />
                 }
@@ -521,7 +472,7 @@ const Exam = ({ navigation, route }) => {
   )
 }
 
-export default Exam
+export default UnitQuestions
 
 const styles = StyleSheet.create({
 

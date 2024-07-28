@@ -6,6 +6,8 @@ import {IconButton,
   } from '../../components';
 import AllSection from './All_Units/AllSection';
 import UnitSection from './All_Units/UnitSection';
+import { useSelector, useDispatch } from 'react-redux';
+import { getYear } from '../../redux/actions/questionAction';
 
 const ALL_Units_Option = constants.ALL_Units_Option.map((ALL_Units_Option) =>({
     ...ALL_Units_Option,
@@ -116,7 +118,29 @@ const Tabs = ({ scrollX, onTabPress }) => {
 
 
 
-const YearListing = ({ navigation }) => {
+const YearListing = ({ navigation, route }) => {
+
+  const {subject} = route.params;
+
+  const { auth, exam} = useSelector((state) => state);
+  const dispatch = useDispatch();
+
+  console.log("yearlisting auth", exam)
+
+  const [years, setYears] = useState("")
+  const [units, setUnits] = useState("")
+
+   useEffect(() => {
+    setYears(exam.years)
+    setUnits(exam.units)
+  }, [exam]);
+ 
+  useEffect(() => {
+    dispatch(getYear({subject, auth}))
+  }, []);
+
+
+    
 
     const flatListRef = useRef()
     const scrollX = useRef(new Animated.Value(0)).current
@@ -166,7 +190,7 @@ const YearListing = ({ navigation }) => {
                     ...FONTS.h2,
                     color: COLORS.white
                 }} >
-                    Biology
+                    {subject}
                 </Text>
                 </View>
 
@@ -237,8 +261,8 @@ const YearListing = ({ navigation }) => {
                             width: SIZES.width
                           }}
                         >
-                            {index == 0 && <AllSection navigation={navigation}/>}
-                            {index == 1 && <UnitSection navigation={navigation}/>}
+                            {index == 0 && <AllSection navigation={navigation} subject={subject} years={years}/>}
+                            {index == 1 && <UnitSection navigation={navigation} subject={subject} units={units}/>}
                     </View>
                     )
                   }}

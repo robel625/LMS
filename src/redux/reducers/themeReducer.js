@@ -7,7 +7,7 @@ const initialState = {
     error: null
 }
 
-console.log("reducer nnnnnnnnnnn", initialState)
+// console.log("reducer nnnnnnnnnnn", initialState)
 
 const themeReducer = (state = initialState, action) => {
     switch (action.type){

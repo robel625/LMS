@@ -12,26 +12,16 @@ import { Toast } from "react-native-toast-notifications";
 
 const Welcome = ({navigation}) => {
 
-  const { auth, alert } = useSelector((state) => state);
+  const { auth } = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  console.log("auth AAA", auth)
-
-  const [selectedScreen, setSelectedScreen] = useState('');
-
-  // Bottom Modal
-  const bottomSheetModalRef = useRef(null);
-
-  // Bottom Modal Callbacks
-  const showModal = useCallback(screen => {
-    setSelectedScreen(screen);
-    bottomSheetModalRef.current.present();
-  }, []);
-
-  const hideModal = useCallback(screen => {
-    scaleAnimationState.transitionTo('normal');
-    bottomSheetModalRef.current.dismiss();
-  }, []);
+  useEffect(() => {
+    if (auth.token) {
+        navigation.navigate('Dashboard', {
+            from: constants.register,
+          });
+    }
+  }, [auth.token ]);
 
   // Moti
   const scaleAnimationState = useAnimationState({
@@ -49,48 +39,7 @@ const Welcome = ({navigation}) => {
     scaleAnimationState.transitionTo('normal');
   }, []);
 
-  // Handler
-
-  useEffect(() => {
-    if (auth.token) {
-      hideModal();
-      if(selectedScreen == constants.register){
-          navigation.navigate('Otp', {
-            from: constants.register,
-          });
-        }
-      if(selectedScreen == constants.login){
-        navigation.navigate('Dashboard', {
-          from: constants.login,
-        });
-      }
-    }
-  }, [auth.token ]);
-
-  function onRegister(userData) {
-    console.log("userData, uUUUUUU", userData)
-    dispatch(register(userData));
-    // console.log('userData', userData);
-
-    
-  }
-
-
-  function onLogin(userData) {
-    console.log("userData, LLL", userData)
-    dispatch(login(userData));
-    // hideModal();
-    // navigation.navigate('Dashboard', {
-    //   from: constants.register,
-    // });
-  }
-
-  function onForgotPasswordSubmit() {
-    hideModal();
-    navigation.navigate('Otp', {
-      from: constants.forgot_password,
-    });
-  }
+ 
 
   // Render
 
@@ -144,10 +93,11 @@ const Welcome = ({navigation}) => {
               backgroundColor: COLORS.primary500,
             }}
             onPress={() => {
-              setTimeout(() => {
-                scaleAnimationState.transitionTo('scaleDown');
-              }, 100);
-              showModal(constants.login);
+              // setTimeout(() => {
+              //   scaleAnimationState.transitionTo('scaleDown');
+              // }, 100);
+              // showModal(constants.login);
+              navigation.navigate('Login')
             }}
           />
 
@@ -194,7 +144,8 @@ const Welcome = ({navigation}) => {
               borderRadius: 30,
             }}
             onPress={() => {
-              showModal(constants.register);
+              // showModal(constants.register);
+              navigation.navigate('SignUp')
             }}
           />
         </View>
@@ -214,7 +165,7 @@ const Welcome = ({navigation}) => {
         {renderLoginDetails()}
 
       
-        <AuthModal
+        {/* <AuthModal
           bottomSheetModalRef={bottomSheetModalRef}
           hideModal={hideModal}
           selectedScreen={selectedScreen}
@@ -223,7 +174,7 @@ const Welcome = ({navigation}) => {
           onLogin={onLogin}
           onForgotPasswordSubmit={onForgotPasswordSubmit}
           alert={alert}
-        />
+        /> */}
       </MotiView>
       
     </View>

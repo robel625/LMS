@@ -6,7 +6,7 @@ const categories = [
     },
     {
         id: 1,
-        title: "CHEMSTRY",
+        title: "CHEMISTRY",
         background: require("../assets/images/bg_2.png")
     },
     {
@@ -35,7 +35,7 @@ const categories = [
         background: require("../assets/images/bg_1.png")
     },
     {
-        id: 6,
+        id: 7,
         title: "CIVICS",
         background: require("../assets/images/bg_2.png")
     },
@@ -50,7 +50,7 @@ const SubjectCatagory = [
     },
     {
         id: 1,
-        title: "CHEMSTRY",
+        title: "CHEMISTRY",
         background: require("../assets/images/bg_2.png"),
         thumbnail: require("../assets/images/chemical-industrial.png")
     },
@@ -89,6 +89,55 @@ const SubjectCatagory = [
         title: "CIVICS",
         background: require("../assets/images/bg_1.png"),
         thumbnail: require("../assets/images/civic.png")
+    }
+]
+
+
+
+const HomeCatagory = [
+    {
+        id: 0,
+        title: "UEE Questions",
+        background: require("../assets/images/bg_1.png"),
+        thumbnail: require("../assets/images/microscope.png"),
+        navigate: 'SubjectListing'
+    },
+    {
+        id: 1,
+        title: "Videos",
+        background: require("../assets/images/bg_2.png"),
+        thumbnail: require("../assets/images/chemical-industrial.png"),
+        navigate: 'YoutubeListing',
+        payment: false
+    },
+    {
+        id: 2,
+        title: "Weekly Test",
+        background: require("../assets/images/bg_3.png"),
+        thumbnail: require("../assets/images/maths.png"),
+        navigate: 'Weekly Test'
+    },
+    {
+        id: 3,
+        title: "pre intrance exam",
+        background: require("../assets/images/bg_4.png"),
+        thumbnail: require("../assets/images/english.png"),
+        navigate: 'Weekly Test'
+    },
+    {
+        id: 4,
+        title: "premier tutorial",
+        background: require("../assets/images/bg_5.png"),
+        thumbnail: require("../assets/images/physics.png"),
+        navigate: 'YoutubeListing',
+        payment: true
+    },
+    {
+        id: 5,
+        title: "Note",
+        background: require("../assets/images/bg_6.png"),
+        thumbnail: require("../assets/images/globe-geography.png"),
+        navigate: 'Weekly Test'
     }
 ]
 
@@ -546,4 +595,5 @@ export default {
     SubjectCatagory,
     YearCatagory,
     UnitsCatagory,
+    HomeCatagory,
 }

@@ -10,11 +10,12 @@ const Notify = () => {
     const { alert } = useSelector(state => state)
     const dispatch = useDispatch()
 
-    console.log("alert FROM CCC Alert", alert)
+    // console.log("alert FROM CCC Alert", alert)
+    const isLoading = true
 
     return (
         <View>
-            {alert.loading && <Loading />}
+            {alert.loading && <Loading  visible={isLoading}/>}
 
             {
                 alert.error && 

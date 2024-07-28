@@ -8,6 +8,10 @@ import Video from 'react-native-video';
 import CourseChapters from './CourseTabs/CourseChapters';
 import CourseFiles from './CourseTabs/CourseFiles';
 import CourseDiscussions from './CourseTabs/CourseDiscussions';
+import { useSelector, useDispatch } from 'react-redux';
+import { getAllLectures } from '../../redux/actions/courseAction';
+import { WebView } from 'react-native-webview';
+import { BASE_URL } from '../../utils/config';
 
 const course_details_tabs = constants.course_details_tabs.map((course_details_tabs) =>({
     ...course_details_tabs,
@@ -122,7 +126,44 @@ const Tabs = ({ scrollX, onTabPress }) => {
 
 const CourseDetails = ({ navigation, route }) => {
 
-    const { selectedCourse } = route.params;
+    const { selectedCourse, lectureId } = route.params;
+    console.log("hittttted lectureId", lectureId)
+    const dispatch = useDispatch();
+
+    const lectures = useSelector((state) =>state.course.lectures)
+    console.log("get lecture LLLVVVVVVVV", lectures)
+
+    useEffect(() => {
+      dispatch(getAllLectures(selectedCourse.id))
+    }, [selectedCourse.id, dispatch])
+
+    
+
+
+    const selectLecture = (lectures, lectureId) => {
+      if (!Array.isArray(lectures) || !lectures.length) return null
+      if (lectureId == "first"){
+        console.log("hittttted")
+        return lectures[0]
+      }
+      const index = lectures.findIndex((lecture) => lecture.id == lectureId)
+      console.log("indexXXXXX", index)
+      if (index === -1) return null
+      return lectures[index]
+    }
+
+    const [selectedLecture, setSelectedLecture] = useState(
+      selectLecture(lectures, lectureId)
+    )
+    useEffect(() => {
+      setSelectedLecture(selectLecture(lectures, lectureId))
+    }, [lectures])
+
+    console.log("selectedLecture SSSSSSSS", selectedLecture)
+
+    const chooseLecture = (lectureId) => {
+      setSelectedLecture(selectLecture(lectures, lectureId))
+    }
 
     const [playVideo, setPlayVideo] = useState(false)
 
@@ -146,8 +187,9 @@ const CourseDetails = ({ navigation, route }) => {
            }}
         
         >
-            <ImageBackground
-               source={selectedCourse?.thumbnail}
+            {selectedLecture?.type == "file" && <ImageBackground
+              //  source={selectedCourse?.thumbnail}
+               source={{uri: `${BASE_URL}/${selectedLecture?.thumbnail}`}}
                style={{
                 width:"100%",
                 height: "100%",
@@ -176,7 +218,9 @@ const CourseDetails = ({ navigation, route }) => {
 
                 {playVideo &&
                    <Video
-                      source={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/big_buck_bunny_1080p.mp4'}}
+                      // source={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/big_buck_bunny_1080p.mp4'}}
+                      source={{ uri: `http://192.168.149.86:8000/${selectedLecture?.file}`}}
+                      // src={`https://www.youtube.com/embed/${selectedLecture.videoId}`}
                       controls={true}
                       style={{
                         position: 'absolute',
@@ -187,10 +231,18 @@ const CourseDetails = ({ navigation, route }) => {
                         backgroundColor: COLORS.black
                       }}
                    />
+                   
                 
                 }
                
-            </ImageBackground>
+            </ImageBackground>}
+
+             {selectedLecture?.type == "video" && <WebView
+                  javaScriptEnabled={true}
+                  scrollEnabled={false}
+                  allowsFullscreenVideo={true}source={{uri: `https://www.youtube.com/embed/${selectedLecture?.videoId}?&showinfo=0&controls=1&fullscreen=1`}}
+                  style={{ width: SIZES.width, height: 200 }}
+                />}
 
         </View>
     )
@@ -223,37 +275,7 @@ const CourseDetails = ({ navigation, route }) => {
            />
         </View>
 
-        <View
-          style={{
-            flexDirection: 'row'
-          }}
-        >
-           <IconButton
-              icon={icons.media}
-              iconStyle={{
-                tinitColor: COLORS.black
-              }}
-              containerStyle={{
-                width: 50,
-                height: 50,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-           />
-
-            <IconButton
-              icon={icons.favourite_outline}
-              iconStyle={{
-                tinitColor: COLORS.black
-              }}
-              containerStyle={{
-                width: 50,
-                height: 50,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-           />
-        </View>
+        {/* /;' */}
         </>
     )
   }
@@ -348,7 +370,8 @@ function renderContent() {
                         width: SIZES.width
                       }}
                     >
-                        {index == 0 && <CourseChapters/>}
+                        {index == 0 && <CourseChapters lectures={lectures} selectedLecture={selectedLecture}
+                                                            chooseLecture={chooseLecture}/>}
                         {index == 1 && <CourseFiles/>}
                         {index == 2 && <CourseDiscussions/>}
                 </View>

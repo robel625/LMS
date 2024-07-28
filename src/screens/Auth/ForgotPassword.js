@@ -5,7 +5,7 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {COLORS, FONTS, SIZES, icons} from '../../constants';
 import {FormInput, TextButton} from '../../components';
 
-const ForgotPassword = ({setSelectedScreen, onForgotPasswordSubmit}) => {
+const ForgotPassword = ({navigation}) => {
   // State
 
   const [email, setEmail] = useState('');
@@ -100,15 +100,19 @@ const ForgotPassword = ({setSelectedScreen, onForgotPasswordSubmit}) => {
             borderRadius: SIZES.radius,
             height: 55,
           }}
-          onPress={() => {
-            onForgotPasswordSubmit();
-          }}
+          // onPress={() => {
+          //   onForgotPasswordSubmit();
+          // }}
         />
       </View>
     );
   }
   return (
-    <View style={{flex: 1}}>
+    <View
+        style={{
+          flex: 1,
+          padding: SIZES.padding,
+          backgroundColor: COLORS.backgroundPrimary,}}>
       <KeyboardAwareScrollView
         enableOnAndroid={true}
         keyboardDismissMode="on-drag"

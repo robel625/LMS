@@ -23,7 +23,7 @@ export default  Civic_Ministry_2015 = [
         question: "One of the following describes the vice character of a person.",
         options: [
         "dishonesty ",
-        "Courage ",
+        "Courage",
         "Compassion",
         "Generosity"
         ],
